@@ -1,0 +1,24 @@
+{
+  "schema_version": "aef-story-card/v2",
+  "artifact_type": "aef-story-card",
+  "package_id": "REQ-PKG-001",
+  "status": "ready_for_spec",
+  "source": {"summary": "点击逐字稿跳回视频。", "facts": [], "assumptions": [], "unknowns": [], "constraints": []},
+  "epic": {"epic_id": "EPIC-001", "title": "提升学习效率", "status": "identified", "story_ids": ["US-001"]},
+  "stories": [{
+    "story_id": "US-001", "title": "点击逐字稿跳转视频", "actor": "视频学习者", "scenario": "阅读逐字稿时", "goal": "点击文字跳到对应视频位置", "value": "快速回看相关内容", "statement": "作为视频学习者，当我阅读逐字稿时，我希望点击文字跳到对应视频位置，从而快速回看相关内容。", "status": "approved",
+    "invest_review": {
+      "independent": {"status": "pass", "reason": "可独立交付"}, "negotiable": {"status": "pass", "reason": "未锁定技术"}, "valuable": {"status": "pass", "reason": "提升回看效率"}, "estimable": {"status": "pass", "reason": "边界清楚"}, "small": {"status": "pass", "reason": "单一结果"}, "testable": {"status": "pass", "reason": "验收完整"}
+    },
+    "acceptance_ids": ["AC-US-001-S", "AC-US-001-F", "AC-US-001-B"]
+  }],
+  "acceptance": [
+    {"acceptance_id": "AC-US-001-S", "story_id": "US-001", "type": "success", "given": "已有逐字稿", "when": "点击文字", "then": "跳转"},
+    {"acceptance_id": "AC-US-001-F", "story_id": "US-001", "type": "failure", "given": "解析失败", "when": "打开", "then": "提示重试"},
+    {"acceptance_id": "AC-US-001-B", "story_id": "US-001", "type": "boundary", "given": "无时间戳", "when": "点击", "then": "不跳转并提示"}
+  ],
+  "scope": {"included": ["点击定位"], "excluded": []},
+  "reviews": {"story": {"status": "approved", "confirmation": "explicit_user_confirmation", "change_summary": []}, "acceptance": {"status": "approved", "confirmation": "explicit_user_confirmation", "change_summary": []}},
+  "delivery": {"human_file": "./user-story.md", "machine_file": "./story-card.json"},
+  "next_step": {"items": [{"route": "direct_spec", "reason": "边界清楚", "capability": "spec-writing", "story_ids": ["US-001"], "target_id": "SPEC-US-001", "suggested_path": "docs/specs/SPEC-US-001.md", "required_acceptance_ids": ["AC-US-001-S", "AC-US-001-F", "AC-US-001-B"]}]}
+}

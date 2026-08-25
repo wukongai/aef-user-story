@@ -1,0 +1,24 @@
+{
+  "schema_version": "aef-story-card/v2",
+  "artifact_type": "aef-story-card",
+  "package_id": "REQ-JSON",
+  "status": "ready_for_spec",
+  "source": {"summary": "故意制造双文件不一致。", "facts": [], "assumptions": [], "unknowns": [], "constraints": []},
+  "epic": {"epic_id": "EPIC-001", "title": "不一致示例", "status": "identified", "story_ids": ["US-001"]},
+  "stories": [{
+    "story_id": "US-001", "title": "JSON Story", "actor": "用户", "scenario": "使用时", "goal": "完成目标", "value": "获得价值", "statement": "作为用户，当我使用时，我希望完成目标，从而获得价值。", "status": "approved",
+    "invest_review": {
+      "independent": {"status": "pass", "reason": "可独立"}, "negotiable": {"status": "pass", "reason": "可协商"}, "valuable": {"status": "pass", "reason": "有价值"}, "estimable": {"status": "pass", "reason": "可估算"}, "small": {"status": "pass", "reason": "范围小"}, "testable": {"status": "pass", "reason": "可验收"}
+    },
+    "acceptance_ids": ["AC-US-001-S", "AC-US-001-F", "AC-US-001-B"]
+  }],
+  "acceptance": [
+    {"acceptance_id": "AC-US-001-S", "story_id": "US-001", "type": "success", "given": "条件", "when": "动作", "then": "结果"},
+    {"acceptance_id": "AC-US-001-F", "story_id": "US-001", "type": "failure", "given": "失败", "when": "动作", "then": "提示"},
+    {"acceptance_id": "AC-US-001-B", "story_id": "US-001", "type": "boundary", "given": "边界", "when": "动作", "then": "安全结果"}
+  ],
+  "scope": {"included": [], "excluded": []},
+  "reviews": {"story": {"status": "approved", "confirmation": "explicit_user_confirmation", "change_summary": []}, "acceptance": {"status": "approved", "confirmation": "explicit_user_confirmation", "change_summary": []}},
+  "delivery": {"human_file": "./user-story.md", "machine_file": "./story-card.json"},
+  "next_step": {"items": [{"route": "direct_spec", "reason": "边界清楚", "capability": "spec-writing", "story_ids": ["US-001"], "target_id": "SPEC-US-001", "suggested_path": "docs/specs/SPEC-US-001.md", "required_acceptance_ids": ["AC-US-001-S", "AC-US-001-F", "AC-US-001-B"]}]}
+}
