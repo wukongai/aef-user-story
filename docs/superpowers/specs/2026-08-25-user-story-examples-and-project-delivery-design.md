@@ -273,7 +273,31 @@ PRD 是可选展开层，不是必经审批。
 | `backlog` | Story 已确认，但暂不进入开发 |
 | `specialist_review` | 隐私、安全、合规、支付等专项问题尚未批准 |
 
-`next_step` 必须包含 route、reason、capability、目标 ID/路径以及必须继承的 Story/Acceptance ID。它只提供能力钩子，不假设某个下游 Skill 已安装。
+`next_step` 使用 `items` 数组。每项必须包含 route、reason、capability、目标 ID/路径以及必须继承的 Story/Acceptance ID。它只提供能力钩子，不假设某个下游 Skill 已安装。
+
+```json
+{
+  "next_step": {
+    "items": [
+      {
+        "route": "direct_spec",
+        "reason": "Story 和验收边界已经清楚",
+        "capability": "spec-writing",
+        "story_ids": ["US-001"],
+        "target_id": "SPEC-US-001",
+        "suggested_path": "docs/specs/SPEC-US-001.md",
+        "required_acceptance_ids": [
+          "AC-US-001-S",
+          "AC-US-001-F",
+          "AC-US-001-B"
+        ]
+      }
+    ]
+  }
+}
+```
+
+`direct_spec` 每项只能引用一条 Story，确保一条 Story 对应一个建议 Spec；`prd` 可以在一项中引用多条相关 Story。当前范围内每条 approved Story 必须且只能出现在一个 next-step item 中。
 
 ## 10. 三个完整案例
 
