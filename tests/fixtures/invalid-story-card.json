@@ -1,5 +1,5 @@
 {
-  "schema_version": "wrong-version",
+  "schema_version": "aef-story-card/v1",
   "artifact_type": "formal-prd",
   "review_state": {"story": "candidate", "acceptance": "approved"},
   "source_summary": "",
