@@ -2,7 +2,7 @@ name: aef-user-story
 kind: technique
 owner: wukongai
 status: candidate
-version: 0.1.0
+version: 0.2.0
 scope: direct/manual
 
 inputs:
@@ -10,25 +10,25 @@ inputs:
     type: text_or_readable_attachment
     required: true
   - name: existing_context
-    type: text_or_story_card
+    type: text_or_story_package
+    required: false
+  - name: target_project
+    type: readable_project_path
     required: false
   - name: constraints
     type: list
     required: false
 
 outputs:
-  - name: story_review
-    type: markdown
+  - name: story_package
+    type: markdown_and_json
     required: true
-  - name: acceptance_review
-    type: markdown
-    required: false
-  - name: story_card
-    type: aef-story-card/v1
-    required: false
-  - name: prd_handoff
-    type: structured_markdown_or_json
-    required: false
+  - name: story_card_v2
+    type: aef-story-card/v2
+    required: true
+  - name: next_step
+    type: capability_routes
+    required: true
 
 stops:
   - name: clarification_required
@@ -37,6 +37,10 @@ stops:
     condition: 候选 Story 和首个切片已准备好，但用户尚未确认
   - name: acceptance_review
     condition: Acceptance Criteria 已准备好，但用户尚未确认
+  - name: project_write_preview
+    condition: 双文件路径与内容已准备好，但用户尚未明确批准写入
+  - name: write_conflict
+    condition: 目标文件已存在且内容不同，禁止静默覆盖
   - name: sensitive_input
     condition: 原始输入包含尚未脱敏的凭证、个人隐私或机密材料
   - name: unreadable_input
@@ -45,19 +49,21 @@ stops:
     condition: 需要法律、医疗、金融、隐私、安全、权限、合规、支付或迁移专项审批
 
 delegates:
-  - name: downstream_prd_skill
-    contract: 只交接已确认的 StoryCard 和 PRD 交接材料
+  - name: downstream_requirement_skill
+    contract: 只交接已确认的 Story、Acceptance、route、target_id 和建议路径
   - name: specialist_review
     contract: 交接风险摘要、已知事实、未知项和所需决策负责人
 
 forbidden:
   - invented_user_facts
-  - horizontal_technical_tasks_as_user_stories
+  - technical_tasks_as_user_stories
   - acceptance_before_story_confirmation
-  - ready_handoff_before_acceptance_confirmation
+  - ready_status_before_acceptance_confirmation
+  - silent_project_overwrite
   - formal_prd_generation
   - technical_spec_generation
-  - architecture_or_code_generation
+  - task_or_code_generation
+  - story_points_estimation
   - credentials_or_sensitive_raw_material_in_outputs
   - hardcoded_user_absolute_paths
   - training_course_structure_as_product_fact
@@ -74,21 +80,29 @@ side_effect_boundary:
   conversation_is_read_only: true
   network_calls: false
   project_writes_require_approval: true
+  existing_files_require_separate_conflict_approval: true
   lifecycle_state_owned_by_host: true
 
 state:
-  strategy: explicit review_state in the StoryCard
+  strategy: explicit reviews and next_step in aef-story-card/v2
   secrets_allowed: false
 
 scripts:
   - path: scripts/validate_story_card.py
     side_effect: none
+  - path: scripts/validate_story_package.py
+    side_effect: none
 
 tests:
-  command: python3 tests/test_validate_story_card.py -v
+  commands:
+    - python3 tests/test_validate_story_card.py -v
+    - python3 tests/test_validate_story_package.py -v
+    - python3 tests/test_skill_contract.py -v
+    - python3 tests/test_examples.py -v
   fixtures:
-    valid: tests/fixtures/valid-story-card.json
-    invalid: tests/fixtures/invalid-story-card.json
+    valid_v1: tests/fixtures/valid-story-card.json
+    valid_v2: tests/fixtures/valid-story-card-v2.json
+    invalid_v2: tests/fixtures/invalid-story-card-v2.json
   regression_cases:
     - tests/cases/success.yaml
     - tests/cases/failure.yaml
@@ -96,7 +110,7 @@ tests:
     - tests/cases/negative-trigger.yaml
 
 evaluation:
-  suite_id: aef-user-story-v0-1
+  suite_id: aef-user-story-v0-2
   score_scope: structural_readiness
   claims:
     utility: false

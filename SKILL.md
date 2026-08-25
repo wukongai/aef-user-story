@@ -1,19 +1,19 @@
 ---
 name: aef-user-story
-description: 当用户只有模糊产品想法、混杂功能清单、过大的 Epic、不明确的首版范围，或者已确认的 Story 需要补充可观察的 Acceptance Criteria 时使用。也用于拆分 User Story、识别首个垂直价值切片，或在撰写 PRD 前整理需求。不用于直接生成架构、UI、Spec、实施计划、缺陷修复或代码。
+description: 当用户只有模糊需求、口述想法、功能清单、过大的 Epic，或需要把已知需求整理成符合 INVEST、带可观察验收条件的 User Story 时使用。也用于在写 PRD 或 Spec 前完成需求澄清、Story 拆分、双重确认和项目落盘。不用于直接生成正式 PRD、技术 Spec、实施任务、架构或代码。
 ---
 
 # AEF User Story
 
-把模糊需求塑形成可确认、可追踪、可验收的用户价值切片。核心原则是：先确认 Story 正面，再确认 Acceptance 背面；没有确认就不越级。
+把模糊需求变成已确认、可验收、可追踪到后续 PRD 或 Spec 的 User Story 需求包。先确认 User Story，再确认验收条件，最后确认是否写入项目；任何一道门未通过都不能越级。
 
 ## 适用场景
 
 - 用户只有一句产品想法、口述需求、截图文字或混杂功能清单。
-- 用户问“怎么拆 User Story”“这是 Epic 还是 Story”“第一版先做哪一刀”。
+- 用户问“怎么拆 User Story”“这是 Epic 还是 Story”“第一版先做什么”。
 - 现有 Story 混入多个用户、多个结果或前端/后端/数据库等横向任务。
 - Story 已经确认，需要补 success、failure、boundary Acceptance Criteria。
-- PRD 开始前需要一份结构化、经确认的需求 handoff。
+- PRD 或 Spec 开始前需要一份结构化、经确认的需求包。
 
 ## 不适用场景
 
@@ -38,70 +38,86 @@ description: 当用户只有模糊产品想法、混杂功能清单、过大的 
 
 ## 资源路由
 
-- Intake、Epic、垂直拆分、INVEST 和 first cut：读取 [story-shaping-standard.md](references/story-shaping-standard.md)。
-- StoryCard 字段、ID、状态和 PRD handoff：读取 [story-card-contract.md](references/story-card-contract.md)。
+- Epic、Story、INVEST 和 Acceptance 写法：读取 [how-to-write-user-story.md](references/how-to-write-user-story.md)。
+- `user-story.md`、StoryCard v2 字段、ID、状态和路由：读取 [user-story-format.md](references/user-story-format.md)。
+- 项目路径、写入预览、批准、非覆盖写入和下游钩子：读取 [how-to-save-to-project.md](references/how-to-save-to-project.md)。
 - 独立使用与未来 AEF 集成：读取 [aef-integration.md](references/aef-integration.md)。
-- 用户提供或要求写入 StoryCard JSON 时，运行 `scripts/validate_story_card.py`。
+- 用户提供或要求写入需求包时，运行两个确定性校验脚本。
 
 ## 工作流
 
-### 1. 需求摄入
+### 1. 需求复述
 
 复述原始需求，不添加未声明的功能。列出 facts、assumptions、unknowns、constraints 和 solution ideas。
 
-如果某个未知项会实质改变用户、场景、Story 边界或 first cut，一次只问一个信息增益最高的问题。否则保留 unknown 并继续形成候选。
+如果某个未知项会实质改变用户、场景、目标、价值或 Story 边界，一次只问一个信息增益最高的问题。否则保留 unknown 并继续形成候选。
 
-### 2. 需求塑形
+### 2. 区分 Epic 与 User Story
 
-识别 Epic，或说明原始需求已经足够小。按端到端用户结果拆候选 Story，并分配稳定 ID。
+如果输入包含多个主要用户、多个可独立获得的结果或一组发布目标，先标记为 Epic，再按用户结果拆候选 Story，并分配稳定 ID。
 
 每条 Story 使用这一语义：
 
 > 作为〔主要用户〕，当〔具体场景〕时，我希望〔完成一个用户目标〕，从而〔获得可感知价值〕。
 
-用 INVEST 诊断候选，不把 INVEST 当机械评分。按用户价值拆分，不按前端、后端、模型、数据库或团队职责拆分。
+逐条给出 INVEST 证据：Independent、Negotiable、Valuable、Estimable、Small、Testable。`Estimable` 只判断信息是否足以供后续估算，不计算 Story Points。按用户价值拆分，不按前端、后端、模型、数据库或团队职责拆分。
 
-### 3. 选择首个垂直切片
+### 3. User Story 修改循环
 
-检查每条 Story 是否能让用户体验到一个完整结果。推荐一个 first cut，并说明为什么它最先验证核心价值、哪些 Story 暂缓、当前非目标和仍待确认的假设。
+按“原始需求摘要 → 信息分类 → Epic → 候选 Story → INVEST → 当前范围与暂缓项”展示。明确告诉用户可以：确认全部、修改某一条、拆分某一条、合并两条、增加遗漏 Story、暂缓某一条、调整范围或顺序。
 
-推荐不等于批准。最终范围与优先级由用户决定。
+根据反馈重写并再次展示差异；只要还有修改，继续循环，不把沉默或模糊肯定当批准。
 
-### 4. User Story 评审门
+### 4. User Story 明确确认
 
-按以下顺序展示：
+请求用户明确确认当前 Story 集合与范围。确认后把 Story review 标为 `approved`；未确认时保持 `awaiting_confirmation` 并停止。
 
-1. 原始需求摘要；
-2. facts / assumptions / unknowns / constraints / solution ideas；
-3. Epic；
-4. 候选 Story；
-5. 垂直切片检查；
-6. first cut、暂缓项和非目标；
-7. 请求用户明确确认或修改。
+任何已批准 Story 后续发生角色、场景、目标、价值、范围或 ID 变化时，该 Story 回到待确认，关联验收条件失效，Acceptance review 回到 `draft` 或 `not_started`。
 
-**停止。** 用户没有明确确认 Story 集合前，Story 状态保持 `candidate` 或 `awaiting_confirmation`，不生成正式 Acceptance，不把 PRD handoff 标记为 ready。
-
-### 5. 验收条件
+### 5. 生成验收条件
 
 只为已确认 Story 生成外部可观察条件：
 
 - success：主路径成功结果；
-- failure：关键失败时用户看到什么；
+- failure：关键失败时用户看到什么以及如何恢复；
 - boundary：输入、权限、数量、时间或状态边界改变行为时会怎样。
 
-优先使用 Given / When / Then。不得把“接口完成、代码合并、页面写完、测试通过”当成 Acceptance。
+每条准备进入下游的 Story 至少各有一条 success、failure、boundary。优先使用 Given / When / Then。“接口完成、代码合并、页面写完、测试通过”是技术任务，不是 Acceptance。
 
-### 6. 验收条件评审门
+### 6. 验收条件修改循环
 
-展示每条 Acceptance 的 ID、Story 引用、类型和可观察结果，同时列出仍未解决的问题。
+逐条展示 Acceptance ID、所属 Story、类型和 Given / When / Then。允许用户修改、增加、删除、重排或指出不可观察的条件；每次修改后重新检查三类覆盖和 Story 引用。
 
-**再次停止。** 用户没有明确确认 Acceptance 前，状态保持 `draft` 或 `awaiting_confirmation`，PRD handoff 不得 ready，不生成正式 PRD、Spec 或代码。
+### 7. 验收条件明确确认
 
-### 7. PRD 交接
+请求用户明确确认验收条件。确认后 Acceptance review 才能标为 `approved`；未确认时保持 `awaiting_confirmation` 并停止。Story review 未批准时，Acceptance review 不能批准。
 
-两次确认都通过后，输出用户、问题和证据摘要；approved Stories 与 Acceptance；first cut、范围、非目标和 deferred Stories；constraints、assumptions、unknowns、依赖、业务规则缺口、稳定 ID 和唯一下一步。
+### 8. 写入预览
 
-Handoff 是下游输入，不是正式 PRD。
+先发现项目现有规范；没有更合适规范时，默认预览：
+
+```text
+docs/requirements/<slug>/
+├── user-story.md
+└── story-card.json
+```
+
+展示目标项目、两个完整路径、将创建或更新的文件、内容摘要、冲突情况和校验命令。已有文件绝不静默覆盖。
+
+### 9. 写入批准
+
+明确询问用户是否批准把预览内容写入所示路径。只有收到明确批准才写入；路径不清、文件冲突或用户要求改动时，更新预览并再次等待批准。
+
+### 10. 下游路由
+
+PRD 是可选路径，不是必经阶段。对每条已批准 Story 选择且只选择一个下一步：
+
+- `direct_spec`：单条 Story 的需求与验收已清楚，可直接交给后续 Spec-writing 能力；
+- `prd`：多个 Story 仍需共同补业务规则、流程或跨角色关系；
+- `backlog`：有价值但明确暂缓；
+- `specialist_review`：支付、法律、医疗、金融、隐私、安全、权限、合规或迁移需要专项审批。
+
+这里只写结构化钩子，不实际生成 PRD 或 Spec。`direct_spec` 必须一条 Story 对应一个目标 Spec；`prd` 可以组合多条相关 Story。
 
 ## 确定性校验
 
@@ -109,9 +125,10 @@ Handoff 是下游输入，不是正式 PRD。
 
 ```bash
 python3 scripts/validate_story_card.py path/to/story-card.json --json
+python3 scripts/validate_story_package.py path/to/requirement-directory --json
 ```
 
-- 退出 0：结构、引用和状态合法；
+- 退出 0：结构、引用、状态和双文件一致性合法；
 - 退出 1：StoryCard 存在确定性错误；
 - 退出 2：用法、文件或 JSON 读取错误。
 
@@ -123,6 +140,6 @@ python3 scripts/validate_story_card.py path/to/story-card.json --json
 
 ## 完成条件
 
-一次任务只有在 Story 集合和 Acceptance 分别明确确认、StoryCard 引用一致、PRD handoff 未越级、未确认事实仍标记为 assumption/unknown、高风险项有明确 handoff 时完成。
+一次任务只有在 Story 和 Acceptance 分别明确确认、每条 approved Story 通过 INVEST 并覆盖三类验收、双文件引用一致、写入经过预览与批准或用户选择只在对话交付、每条 Story 恰好有一个下游 route、高风险项有明确 handoff 时完成。
 
 缺少任一确认时，返回当前阶段、已知内容和唯一下一步，不包装为完成。
