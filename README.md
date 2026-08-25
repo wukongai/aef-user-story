@@ -10,6 +10,13 @@ npx skills add wukongai/aef-user-story
 
 安装器会让你选择目标 Agent，以及项目级或全局安装范围。首次试用建议选择项目级安装，影响范围更小。
 
+## 中文用户手册
+
+- [用户操作手册：从安装到把真实需求写入项目](docs/tutorials/aef-user-story-user-manual.zh-CN.md)
+- [用户交付话术：私聊、短链接和群公告版本](docs/guides/user-delivery-messages.zh-CN.md)
+
+操作手册按第一步、第二步、第三步带用户走完整流程，并用三个真实案例展示：一句模糊需求、一组混合功能和一条过大的 Story 分别该怎么处理。
+
 ## 使用方式
 
 - “我想让用户点击逐字稿就跳回视频，但还没想清楚细节。”
