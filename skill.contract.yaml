@@ -1,0 +1,111 @@
+name: aef-user-story
+kind: technique
+owner: wukongai
+status: candidate
+version: 0.1.0
+scope: direct/manual
+
+inputs:
+  - name: raw_requirement
+    type: text_or_readable_attachment
+    required: true
+  - name: existing_context
+    type: text_or_story_card
+    required: false
+  - name: constraints
+    type: list
+    required: false
+
+outputs:
+  - name: story_review
+    type: markdown
+    required: true
+  - name: acceptance_review
+    type: markdown
+    required: false
+  - name: story_card
+    type: aef-story-card/v1
+    required: false
+  - name: prd_handoff
+    type: structured_markdown_or_json
+    required: false
+
+stops:
+  - name: clarification_required
+    condition: 缺失的用户、场景、目标或价值事实会实质改变 Story 边界
+  - name: story_review
+    condition: 候选 Story 和首个切片已准备好，但用户尚未确认
+  - name: acceptance_review
+    condition: Acceptance Criteria 已准备好，但用户尚未确认
+  - name: sensitive_input
+    condition: 原始输入包含尚未脱敏的凭证、个人隐私或机密材料
+  - name: unreadable_input
+    condition: 宿主无法读取必要附件
+  - name: specialist_review
+    condition: 需要法律、医疗、金融、隐私、安全、权限、合规、支付或迁移专项审批
+
+delegates:
+  - name: downstream_prd_skill
+    contract: 只交接已确认的 StoryCard 和 PRD 交接材料
+  - name: specialist_review
+    contract: 交接风险摘要、已知事实、未知项和所需决策负责人
+
+forbidden:
+  - invented_user_facts
+  - horizontal_technical_tasks_as_user_stories
+  - acceptance_before_story_confirmation
+  - ready_handoff_before_acceptance_confirmation
+  - formal_prd_generation
+  - technical_spec_generation
+  - architecture_or_code_generation
+  - credentials_or_sensitive_raw_material_in_outputs
+  - hardcoded_user_absolute_paths
+  - training_course_structure_as_product_fact
+
+approvals:
+  - name: story_set_confirmation
+    satisfied_by: 用户明确确认候选 Story 和首个切片
+  - name: acceptance_confirmation
+    satisfied_by: 用户明确确认 Acceptance Criteria
+  - name: project_write
+    satisfied_by: 用户明确批准目标路径和内容摘要
+
+side_effect_boundary:
+  conversation_is_read_only: true
+  network_calls: false
+  project_writes_require_approval: true
+  lifecycle_state_owned_by_host: true
+
+state:
+  strategy: explicit review_state in the StoryCard
+  secrets_allowed: false
+
+scripts:
+  - path: scripts/validate_story_card.py
+    side_effect: none
+
+tests:
+  command: python3 tests/test_validate_story_card.py -v
+  fixtures:
+    valid: tests/fixtures/valid-story-card.json
+    invalid: tests/fixtures/invalid-story-card.json
+  regression_cases:
+    - tests/cases/success.yaml
+    - tests/cases/failure.yaml
+    - tests/cases/high-risk.yaml
+    - tests/cases/negative-trigger.yaml
+
+evaluation:
+  suite_id: aef-user-story-v0-1
+  score_scope: structural_readiness
+  claims:
+    utility: false
+  baseline: tests/baseline.json
+  case_portfolio:
+    success: tests/cases/success.yaml
+    failure: tests/cases/failure.yaml
+    high_risk: tests/cases/high-risk.yaml
+    negative_trigger: tests/cases/negative-trigger.yaml
+  negative_transfer: reject_if_negative_trigger_becomes_active
+  real_trial_required: true
+  independent_review_required_for_generalization_claim: true

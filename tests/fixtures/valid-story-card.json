@@ -1,0 +1,46 @@
+{
+  "schema_version": "aef-story-card/v1",
+  "artifact_type": "aef-story-card",
+  "review_state": {"story": "approved", "acceptance": "approved"},
+  "source_summary": "用户希望视频解析后显示文字，并能从文字跳回对应视频位置。",
+  "facts": ["需要把视频内容解析成文字", "点击文字可以跳到对应视频位置"],
+  "assumptions": ["首版服务于观看并学习视频内容的用户"],
+  "unknowns": ["首版支持哪些视频来源"],
+  "constraints": [],
+  "epic": {
+    "epic_id": "EPIC-001",
+    "title": "从长视频内容中快速定位信息",
+    "outcome": "用户可以借助逐字稿定位并回看视频片段"
+  },
+  "stories": [
+    {
+      "story_id": "US-001",
+      "actor": "观看长视频的学习者",
+      "scenario": "视频已成功解析出带时间信息的逐字稿",
+      "goal": "点击一段文字跳到对应的视频位置",
+      "value": "快速回看感兴趣的原始内容",
+      "statement": "作为观看长视频的学习者，当视频已生成带时间信息的逐字稿时，我希望点击一段文字跳到对应的视频位置，从而快速回看感兴趣的原始内容。",
+      "status": "approved",
+      "source_refs": ["fact:1", "fact:2"],
+      "acceptance_ids": ["AC-US-001-S", "AC-US-001-F", "AC-US-001-B"]
+    }
+  ],
+  "selected_story_id": "US-001",
+  "vertical_slice_review": {
+    "is_vertical": true,
+    "rationale": "用户可以完成从阅读文字到回看视频的端到端结果。",
+    "rejected_horizontal_splits": ["只实现逐字稿前端", "只实现跳转 API"]
+  },
+  "acceptance": [
+    {"acceptance_id": "AC-US-001-S", "story_id": "US-001", "type": "success", "given": "视频已生成带时间信息的逐字稿", "when": "用户点击任意一句文字", "then": "视频跳转并播放该句对应的时间位置"},
+    {"acceptance_id": "AC-US-001-F", "story_id": "US-001", "type": "failure", "given": "某句文字缺少有效时间信息", "when": "用户点击该句文字", "then": "系统说明无法定位，并保持当前播放位置"},
+    {"acceptance_id": "AC-US-001-B", "story_id": "US-001", "type": "boundary", "given": "目标时间接近视频结尾", "when": "用户点击对应文字", "then": "视频跳转到不超过总时长的有效位置"}
+  ],
+  "non_goals": ["首版不生成章节、翻译或学习笔记"],
+  "deferred_story_ids": [],
+  "prd_handoff": {
+    "status": "ready",
+    "approved_story_ids": ["US-001"],
+    "open_questions": ["首版支持哪些视频来源"]
+  }
+}
