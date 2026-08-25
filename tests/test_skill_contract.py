@@ -59,6 +59,11 @@ class SkillContractTests(unittest.TestCase):
         self.assertIn("aef-story-card/v2", text)
         self.assertIn("project_write_preview", text)
 
+    def test_main_skill_has_explicit_output_boundary(self) -> None:
+        text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("## 输出", text)
+        self.assertIn("双文件需求包", text)
+
 
 if __name__ == "__main__":
     unittest.main()

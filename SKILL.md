@@ -36,6 +36,14 @@ description: 当用户只有模糊需求、口述想法、功能清单、过大�
 
 含凭证、隐私或商业敏感原文时，停下来要求脱敏摘要。附件不可读时明确说明，不假装读取。
 
+## 输出
+
+- 对话中的需求摘要、Epic、已确认 User Stories、INVEST 证据和三类验收条件；
+- 经写入预览与批准后保存的双文件需求包：`user-story.md` 与 `story-card.json`；
+- 每条 approved Story 的结构化下游 route、目标 ID、建议路径和必须继承的 Acceptance ID。
+
+输出不包含正式 PRD、Spec、Plan、Task、架构或代码；这些只通过能力钩子交给后续阶段。
+
 ## 资源路由
 
 - Epic、Story、INVEST 和 Acceptance 写法：读取 [how-to-write-user-story.md](references/how-to-write-user-story.md)。

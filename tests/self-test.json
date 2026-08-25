@@ -12,6 +12,16 @@
       "timeout_seconds": 10
     },
     {
+      "id": "story-package-validator-requires-input",
+      "script": "scripts/validate_story_package.py",
+      "expected_exit": 2,
+      "stdout_contains": [
+        "[usage]",
+        "validate_story_package.py <directory>"
+      ],
+      "timeout_seconds": 10
+    },
+    {
       "id": "story-card-validator-contract",
       "script": "scripts/self_test.py",
       "expected_exit": 0,
@@ -20,7 +30,11 @@
         "checks.valid_story_card_passes",
         "checks.invalid_story_card_fails",
         "checks.invalid_categories_covered",
-        "checks.missing_acceptance_reference_reported"
+        "checks.missing_acceptance_reference_reported",
+        "checks.valid_v1_story_card_passes",
+        "checks.valid_v2_story_card_passes",
+        "checks.invalid_v2_story_card_fails",
+        "checks.v2_invest_and_route_failures_reported"
       ],
       "stdout_contains": [
         "\"ok\": true"
