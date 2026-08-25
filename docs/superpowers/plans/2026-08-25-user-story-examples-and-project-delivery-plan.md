@@ -8,6 +8,8 @@
 
 **Tech Stack:** 中文 Markdown、JSON、YAML、Python 3 标准库、`unittest`、Git、Skill Engineering Content Gate / Creation Review / Portable Self Test。
 
+**执行状态（2026-08-25）：** Tasks 1–7 的本地实现与发布前验证均已完成；19 个 unittest 通过，Content Gate pass，Production Review 100/A，Portable Self Test pass 且 `target_unchanged: true`。验证证据见 `docs/superpowers/testing/2026-08-25-user-story-v0.2-test-report.md`。
+
 ## Global Constraints
 
 - 目标版本固定为 `0.2.0`，公开仓库仍为 `wukongai/aef-user-story`，MIT License。
