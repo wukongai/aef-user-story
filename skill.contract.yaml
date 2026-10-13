@@ -1,14 +1,14 @@
 name: aef-user-story
 kind: technique
 owner: wukongai
-status: candidate
-version: 0.2.0
-scope: direct/manual
+status: released
+version: 0.3.0
+scope: direct/manual/composed
 
 inputs:
   - name: raw_requirement
     type: text_or_readable_attachment
-    required: true
+    required: false
   - name: existing_context
     type: text_or_story_package
     required: false
@@ -20,21 +20,24 @@ inputs:
     required: false
 
 outputs:
+  - name: continuous_story_workspace
+    type: aef-story-workspace/v1
+    required: false
   - name: story_package
     type: markdown_and_json
-    required: true
+    required: false
   - name: story_card_v2
     type: aef-story-card/v2
-    required: true
+    required: false
   - name: next_step
     type: capability_routes
-    required: true
+    required: false
 
 stops:
   - name: clarification_required
     condition: 缺失的用户、场景、目标或价值事实会实质改变 Story 边界
   - name: story_review
-    condition: 候选 Story 和首个切片已准备好，但用户尚未确认
+    condition: 本轮指定 Story ID 和修订已准备好，但用户尚未确认
   - name: acceptance_review
     condition: Acceptance Criteria 已准备好，但用户尚未确认
   - name: project_write_preview
@@ -70,7 +73,7 @@ forbidden:
 
 approvals:
   - name: story_set_confirmation
-    satisfied_by: 用户明确确认候选 Story 和首个切片
+    satisfied_by: 用户明确确认本轮指定 Story ID 和修订
   - name: acceptance_confirmation
     satisfied_by: 用户明确确认 Acceptance Criteria
   - name: project_write
@@ -84,10 +87,12 @@ side_effect_boundary:
   lifecycle_state_owned_by_host: true
 
 state:
-  strategy: explicit reviews and next_step in aef-story-card/v2
+  strategy: per-object append-only snapshots and reviews in aef-story-workspace/v1; legacy aef-story-card/v2 preserved
   secrets_allowed: false
 
 scripts:
+  - path: scripts/story_workspace.py
+    side_effect: none
   - path: scripts/validate_story_card.py
     side_effect: none
   - path: scripts/validate_story_package.py

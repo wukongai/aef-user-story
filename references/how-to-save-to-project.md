@@ -1,4 +1,6 @@
-# 如何把 User Story 保存到项目
+# 如何把传统 StoryCard 保存到项目
+
+本页约束传统双文件模式；持续维护模式采用 [独立保存协议](continuous-maintenance.md)。
 
 ## 先发现项目已有规范
 

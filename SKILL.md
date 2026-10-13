@@ -1,153 +1,90 @@
 ---
 name: aef-user-story
-description: 当用户只有模糊需求、口述想法、功能清单、过大的 Epic，或需要把已知需求整理成符合 INVEST、带可观察验收条件的 User Story 时使用。也用于在写 PRD 或 Spec 前完成需求澄清、Story 拆分、双重确认和项目落盘。不用于直接生成正式 PRD、技术 Spec、实施任务、架构或代码。
+description: 当用户要从产品定义或原始需求梳理 Epic、用户故事与验收条件，或独立完善某条故事、局部修改验收、维护编号和修订历史时使用。支持故事全貌、按需细化和持续反馈，不要求先运行 AEF 其他 Skill。不用于故事地图、迭代排期、产品详细设计、PRD、技术设计或编码。
 ---
 
 # AEF User Story
 
-把模糊需求变成已确认、可验收、可追踪到后续 PRD 或 Spec 的 User Story 需求包。先确认 User Story，再确认验收条件，最后确认是否写入项目；任何一道门未通过都不能越级。
+把需求整理成可讨论、可确认、可持续维护的故事。可以独立使用，也可由 AEF 调用；不依赖地图、Sprint 或完整生命周期安装。
 
-## 适用场景
+## 先恢复，再确定本轮范围
 
-- 用户只有一句产品想法、口述需求、截图文字或混杂功能清单。
-- 用户问“怎么拆 User Story”“这是 Epic 还是 Story”“第一版先做什么”。
-- 现有 Story 混入多个用户、多个结果或前端/后端/数据库等横向任务。
-- Story 已经确认，需要补 success、failure、boundary Acceptance Criteria。
-- PRD 或 Spec 开始前需要一份结构化、经确认的需求包。
+先读已有 Definition/需求包和项目规范，只用相关背景，不重做产品定义。
+识别本轮是建立全貌、细化指定故事、只补验收、局部修改、拆分合并或恢复进度。一次只追问会改变结果的关键未知，不让用户重述已知信息。
 
-## 不适用场景
+输入可以是一句话、可读附件、产品定义或已有故事。区分 facts、assumptions、unknowns、constraints、solution ideas；未知不冒充事实，技术方案不冒充用户价值。
+编号不明先定位对应对象；读取失败说明未读，含敏感资料时使用脱敏摘要。
 
-- 需求已经确认，用户只要求架构、UI、API、数据模型、Spec、Plan 或代码。
-- 用户只要求修复现有 bug。
-- 用户要求机械改写现成 PRD，且不要求检查用户价值和边界。
-- 输入只有工具、模型、供应商或技术栈；这时先澄清用户问题，不把方案冒充 Story。
+## 两种交付模式
 
-## 输入
+- **持续维护模式**：用户要求独立/局部完善、编号版本管理，或已有 story-workspace.json 时使用。先读 [持续维护](references/continuous-maintenance.md)，以对象修订为单位工作。
+- **传统双文件模式**：已有 StoryCard v1/v2，且只需原流程时保留原能力；读 [格式](references/user-story-format.md) 与 [项目保存](references/how-to-save-to-project.md)。双文件需求包仍为 user-story.md 与 story-card.json。不得把新模式内容冒充 v2，也不擅自迁移旧包。
 
-至少需要一段原始需求。可选读取已有用户反馈、研究证据、范围、非目标、约束和现有需求材料。
-
-先把输入分类为：
-
-- facts：用户明确提供或有证据支持的事实；
-- assumptions：为了形成候选而提出、仍需确认的假设；
-- unknowns：会影响拆分但当前未知的信息；
-- constraints：已知限制；
-- solution ideas：功能名、技术方案、工具或供应商建议。
-
-含凭证、隐私或商业敏感原文时，停下来要求脱敏摘要。附件不可读时明确说明，不假装读取。
+旧包切换持续维护模式先预览导入；保留原包，只维护一个当前入口。旧审批保留在来源快照，新模式确认需用户明确认可对应 ID 与修订。
 
 ## 输出
 
-- 对话中的需求摘要、Epic、已确认 User Stories、INVEST 证据和三类验收条件；
-- 经写入预览与批准后保存的双文件需求包：`user-story.md` 与 `story-card.json`；
-- 每条 approved Story 的结构化下游 route、目标 ID、建议路径和必须继承的 Acceptance ID。
+本轮范围内的 Epic、Story、INVEST 检查、规则与验收条件、版本差异、确认状态和待决问题。
+持续维护模式可先交付概括故事；“草稿已整理”不等于“已满足开发条件”。
+对话可作为交付；项目保存时输出 JSON 历史与人读 Markdown 投影，路径遵循项目规范。
+不生成故事地图、迭代计划、产品详细设计、正式 PRD、Spec、Plan、Task、架构或代码。
 
-输出不包含正式 PRD、Spec、Plan、Task、架构或代码；这些只通过能力钩子交给后续阶段。
+## Story 与验收工作流
 
-## 资源路由
+### 1. 需求复述与 Epic/Story
 
-- Epic、Story、INVEST 和 Acceptance 写法：读取 [how-to-write-user-story.md](references/how-to-write-user-story.md)。
-- `user-story.md`、StoryCard v2 字段、ID、状态和路由：读取 [user-story-format.md](references/user-story-format.md)。
-- 项目路径、写入预览、批准、非覆盖写入和下游钩子：读取 [how-to-save-to-project.md](references/how-to-save-to-project.md)。
-- 独立使用与未来 AEF 集成：读取 [aef-integration.md](references/aef-integration.md)。
-- 用户提供或要求写入需求包时，运行两个确定性校验脚本。
+方法见 [故事写法](references/how-to-write-user-story.md)。
+大目标形成 Epic；按完整用户结果拆 Story，不按前端/后端/数据库拆分。
+句式：作为〔用户〕，当〔场景〕时，我希望〔目标〕，从而〔价值〕。
+每条故事检查 INVEST 的六项证据；信息不足标 risk，不计算 Story Points。
+业务规则、非功能约束和证据单列关联；保留全部候选，不代替用户选择首版。
 
-## 工作流
+### 2. User Story 修改循环
 
-### 1. 需求复述
+展示目标 ID、当前修订、当前内容和候选差异。
+允许修改某一条、拆分某一条、合并两条、增加遗漏 Story、暂缓某一条。
+只改授权对象；相关项先报告影响。拆分/合并保留旧 ID 历史，新对象记录 derived_from，不擅自删除旧故事。
+只要求概括故事时可在此交付草稿，不强制补所有验收。
 
-复述原始需求，不添加未声明的功能。列出 facts、assumptions、unknowns、constraints 和 solution ideas。
+### 3. User Story 明确确认
 
-如果某个未知项会实质改变用户、场景、目标、价值或 Story 边界，一次只问一个信息增益最高的问题。否则保留 unknown 并继续形成候选。
+用户确认绑定具体 Story ID 和修订；局部确认不批准整个包。记录真实 actor/ref，不把沉默、保存授权或示例记录当批准。
+故事语义变化追加修订，旧批准不复用；关联验收条件失效，保留原内容并标待复审。
+持续维护工具通过绑定旧 story_revision 识别失效，不静默重写其他对象。
 
-### 2. 区分 Epic 与 User Story
+### 4. 验收条件修改循环
 
-如果输入包含多个主要用户、多个可独立获得的结果或一组发布目标，先标记为 Epic，再按用户结果拆候选 Story，并分配稳定 ID。
+只对已确认故事细化 success、failure、boundary，采用 Given/When/Then 表达外部可观察结果。
+每个 AC 有独立 ID 与修订，绑定 Story ID 和具体 story_revision。
+只改 AC 时，Story 本身的修订和批准不变；该 AC 新修订需要重新确认。
+“接口写完、代码合并、测试通过”不是用户验收。
 
-每条 Story 使用这一语义：
+### 5. 验收条件明确确认
 
-> 作为〔主要用户〕，当〔具体场景〕时，我希望〔完成一个用户目标〕，从而〔获得可感知价值〕。
+验收确认与故事确认独立。批准 AC 前，其绑定的当前 Story 必须已经明确批准。
+就绪条件：Story 当前修订批准、INVEST 全 pass、三类验收齐全且当前有效 AC 均批准，无过时或待确认项。
+高风险约束仍需所要求的专项判断；结构就绪不等于专业批准。
 
-逐条给出 INVEST 证据：Independent、Negotiable、Valuable、Estimable、Small、Testable。`Estimable` 只判断信息是否足以供后续估算，不计算 Story Points。按用户价值拆分，不按前端、后端、模型、数据库或团队职责拆分。
+### 6. 写入预览与写入批准
 
-### 3. User Story 修改循环
+预览实际路径、对象级 diff、历史保留方式、关联影响和验证结果。
+按本轮已有授权保存，不为已授权同一动作重复追问；范围不清或覆盖冲突时先明确。
+只读工具不写文件。宿主保存时先保留旧文件，生成新候选并用 --previous 校验；重读磁盘基线防并发修改，再按项目规则原子替换并重生 Markdown。
+保存失败报告具体已写/未写文件，不声称完整落盘。不自动安装、commit、push 或发布。
 
-按“原始需求摘要 → 信息分类 → Epic → 候选 Story → INVEST → 当前范围与暂缓项”展示。明确告诉用户可以：确认全部、修改某一条、拆分某一条、合并两条、增加遗漏 Story、暂缓某一条、调整范围或顺序。
+### 7. 下游交接
 
-根据反馈重写并再次展示差异；只要还有修改，继续循环，不把沉默或模糊肯定当批准。
+PRD 是可选路径。传统模式保留 direct_spec、prd、backlog、specialist_review 的结构化路由与原校验。
+持续维护模式交接 Story/AC 的 ID、修订、确认记录、规则、未知和风险，不为了“完成本轮局部修改”强制生成下游文档或排期。
+AEF 生命周期状态仍由宿主拥有，见 [集成边界](references/aef-integration.md)。
 
-### 4. User Story 明确确认
+## 校验与完成
 
-请求用户明确确认当前 Story 集合与范围。确认后把 Story review 标为 `approved`；未确认时保持 `awaiting_confirmation` 并停止。
+持续维护：python3 -B scripts/story_workspace.py validate <新包> --previous <旧包>。
+传统模式：python3 scripts/validate_story_card.py <story-card.json> --json 与 python3 scripts/validate_story_package.py <需求目录> --json。
+完整回归：python3 -B -m unittest discover -s tests -p 'test_*.py'。
+工具仅验证结构和历史，不验证用户批准真实性或业务价值；没有 Python 时声明未做机器检查。
 
-任何已批准 Story 后续发生角色、场景、目标、价值、范围或 ID 变化时，该 Story 回到待确认，关联验收条件失效，Acceptance review 回到 `draft` 或 `not_started`。
-
-### 5. 生成验收条件
-
-只为已确认 Story 生成外部可观察条件：
-
-- success：主路径成功结果；
-- failure：关键失败时用户看到什么以及如何恢复；
-- boundary：输入、权限、数量、时间或状态边界改变行为时会怎样。
-
-每条准备进入下游的 Story 至少各有一条 success、failure、boundary。优先使用 Given / When / Then。“接口完成、代码合并、页面写完、测试通过”是技术任务，不是 Acceptance。
-
-### 6. 验收条件修改循环
-
-逐条展示 Acceptance ID、所属 Story、类型和 Given / When / Then。允许用户修改、增加、删除、重排或指出不可观察的条件；每次修改后重新检查三类覆盖和 Story 引用。
-
-### 7. 验收条件明确确认
-
-请求用户明确确认验收条件。确认后 Acceptance review 才能标为 `approved`；未确认时保持 `awaiting_confirmation` 并停止。Story review 未批准时，Acceptance review 不能批准。
-
-### 8. 写入预览
-
-先发现项目现有规范；没有更合适规范时，默认预览：
-
-```text
-docs/requirements/<slug>/
-├── user-story.md
-└── story-card.json
-```
-
-展示目标项目、两个完整路径、将创建或更新的文件、内容摘要、冲突情况和校验命令。已有文件绝不静默覆盖。
-
-### 9. 写入批准
-
-明确询问用户是否批准把预览内容写入所示路径。只有收到明确批准才写入；路径不清、文件冲突或用户要求改动时，更新预览并再次等待批准。
-
-### 10. 下游路由
-
-PRD 是可选路径，不是必经阶段。对每条已批准 Story 选择且只选择一个下一步：
-
-- `direct_spec`：单条 Story 的需求与验收已清楚，可直接交给后续 Spec-writing 能力；
-- `prd`：多个 Story 仍需共同补业务规则、流程或跨角色关系；
-- `backlog`：有价值但明确暂缓；
-- `specialist_review`：支付、法律、医疗、金融、隐私、安全、权限、合规或迁移需要专项审批。
-
-这里只写结构化钩子，不实际生成 PRD 或 Spec。`direct_spec` 必须一条 Story 对应一个目标 Spec；`prd` 可以组合多条相关 Story。
-
-## 确定性校验
-
-从 Skill 根目录运行：
-
-```bash
-python3 scripts/validate_story_card.py path/to/story-card.json --json
-python3 scripts/validate_story_package.py path/to/requirement-directory --json
-```
-
-- 退出 0：结构、引用、状态和双文件一致性合法；
-- 退出 1：StoryCard 存在确定性错误；
-- 退出 2：用法、文件或 JSON 读取错误。
-
-脚本通过只证明结构合法，不证明用户价值、事实真实性或优先级正确。
-
-## 高风险交接
-
-支付、隐私、权限、安全、合规、医疗、法律、金融或数据迁移需求必须在 StoryCard 中标记风险与待确认 owner。Skill 可以整理已知事实和问题，不能替代专业审批或虚构结论。
-
-## 完成条件
-
-一次任务只有在 Story 和 Acceptance 分别明确确认、每条 approved Story 通过 INVEST 并覆盖三类验收、双文件引用一致、写入经过预览与批准或用户选择只在对话交付、每条 Story 恰好有一个下游 route、高风险项有明确 handoff 时完成。
-
-缺少任一确认时，返回当前阶段、已知内容和唯一下一步，不包装为完成。
+本轮交付应报告目标对象、差异、修订、验收状态、保存位置和唯一下一步。
+局部修改/候选整理不要求整个产品需求全部批准；只有满足就绪条件的故事才能称为“已就绪”。
+Skill 自身版本由 CHANGELOG 管理；产品资料 revision 独立于 Skill 版本。

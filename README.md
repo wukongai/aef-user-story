@@ -1,97 +1,44 @@
 # AEF User Story
 
-`aef-user-story` 帮助 AI 编程 Agent 通过可修改、可确认的对话，把模糊产品需求整理成符合 INVEST、带可观察验收条件的 User Story，并安全保存到项目。
+基于原 0.2.0 完善的 0.3.0：把产品定义、口述需求或持续反馈整理为 Epic、用户故事和验收条件，并维护局部修改与修订历史。
 
-## 安装
+## 直接使用
+读取本目录 SKILL.md 后，告诉 Agent：
+- “把这份产品定义整理成 Epic 和用户故事，先给全貌。”
+- “只完善 US-003 的边界验收，其他内容不变。”
+- “修改 US-003 的目标，保留旧版本并检查验收影响。”
 
+无需先运行 Definition、地图或迭代 Skill。已有背景会复用，只追问本轮必要信息。
+本包不制作故事地图、Sprint、产品详细设计、PRD、技术设计或代码。
+
+## 持续产品开发中的位置
+随时新增／完善故事 → 迭代规划选择故事 → 细化并确认故事与验收 → 对应的产品详细设计。
+本 Skill 维护故事与验收；进入迭代是后续规划决定，不会因新增故事就自动承诺开发。
+
+## 本次新增
+- 按 ID 局部操作，其他对象保持原样。
+- Epic、Story、验收条件各有稳定 ID 与独立 revision。
+- 追加内容快照与确认记录；支持回读旧版、检测过期修改与历史改写。
+- 修改故事后旧验收显示待复审；只改验收不重置故事批准。
+- 候选故事可先概括，按需细化；就绪故事保留 INVEST 与成功/失败/边界三类验收。
+
+## 两种格式
+传统 user-story.md + story-card.json 和 v1/v2 校验保持兼容。
+持续维护使用 story-workspace.json + 渲染的 Markdown；迁移需明确选择，新批准不从旧包自动生成。
+详见 [持续维护方法与命令](references/continuous-maintenance.md) 和 [局部修改完整案例](examples/04-local-revision/README.md)。
+
+## 验证
 ```bash
-npx skills add wukongai/aef-user-story
+python3 -B -m unittest discover -s tests -p 'test_*.py'
+python3 -B scripts/self_test.py
+python3 -B scripts/story_workspace.py validate examples/04-local-revision/story-workspace.json
 ```
 
-安装器会让你选择目标 Agent，以及项目级或全局安装范围。首次试用建议选择项目级安装，影响范围更小。
+工具均为本地 Python 标准库，无网络调用，CLI 只向 stdout 输出候选，不写项目。
+校验通过只证明结构/引用/历史规则合法，不证明真实产品效果或人工批准真实性。
 
-## 中文用户手册
-
-- [用户操作手册：从安装到把真实需求写入项目](docs/tutorials/aef-user-story-user-manual.zh-CN.md)
-- [用户交付话术：私聊、短链接和群公告版本](docs/guides/user-delivery-messages.zh-CN.md)
-
-操作手册按第一步、第二步、第三步带用户走完整流程，并用三个真实案例展示：一句模糊需求、一组混合功能和一条过大的 Story 分别该怎么处理。
-
-## 使用方式
-
-- “我想让用户点击逐字稿就跳回视频，但还没想清楚细节。”
-- “录音、转写、总结、任务、搜索、分享这些功能怎么拆成 User Story？”
-- “这条 AI 内容工作流 Story 太大了，帮我按 INVEST 重拆。”
-
-本 Skill 会区分事实、假设、未知项、约束和方案建议，识别 Epic，并用 Independent、Negotiable、Valuable、Estimable、Small、Testable 六项证据检查每条 Story。
-
-## 对话与确认
-
-1. Agent 复述需求并给出 Epic、候选 Story 和 INVEST 证据。
-2. 用户可以修改、拆分、合并、补充、暂缓或调整 Story；修改完成后明确确认。
-3. Agent 只为已确认 Story 生成 success、failure、boundary 三类验收条件。
-4. 用户继续修改验收条件，完成后再次明确确认。
-5. 写入项目前，Agent 预览路径和两个文件；只有用户明确批准后才写入。
-
-Story 发生变化时，关联验收条件会失效并重新确认。沉默、模糊肯定和前一轮批准都不能替代当前确认。
-
-## 项目交付格式
-
-项目没有既有规范时，默认生成：
-
-```text
-docs/requirements/<slug>/
-├── user-story.md
-└── story-card.json
-```
-
-- `user-story.md`：给人阅读和评审。
-- `story-card.json`：`aef-story-card/v2` 机器合同，保存 INVEST、两次确认、Acceptance 和下游路由。
-
-已有项目规范优先；已有文件不会被静默覆盖。
-
-## PRD 与下一步
-
-PRD 是可选路径。边界清楚的单条 Story 可以直接进入 Spec；多条 Story 仍需补统一业务流程或规则时再进入 PRD。
-
-每条已批准 Story 恰好选择一个 route：
-
-- `direct_spec`：直接交给后续 Spec 能力；
-- `prd`：先补跨 Story 的业务关系；
-- `backlog`：明确暂缓；
-- `specialist_review`：进入法律、安全、隐私、合规等专项评审。
-
-## 能力边界
-
-本 Skill 不生成正式 PRD、技术 Spec、架构、UI 设计、实施计划、开发 Task、测试代码或业务代码。
-
-## 环境要求
-
-- 支持目录型 Agent Skill 的宿主。
-- 推荐使用 Python 3 对 StoryCard JSON 做确定性校验。
-- 如果环境没有 Python，Agent 必须明确说明已跳过结构校验。
-
-## 确定性校验
-
-```bash
-python3 scripts/validate_story_card.py path/to/story-card.json --json
-python3 scripts/validate_story_package.py path/to/requirement-directory --json
-```
-
-第一个命令检查 JSON 合同；第二个命令检查人读文档与 JSON 的 package、Story、Acceptance ID 一致。通过只代表结构合法，不代表业务事实和优先级已经被独立验证。
-
-## 完整案例
-
-- [案例一：点击逐字稿回到视频](examples/01-video-transcript-jump/conversation.md)
-- [案例二：AI 会议助手功能清单](examples/02-ai-meeting-assistant/conversation.md)
-- [案例三：AI 内容工作流大 Story 重拆](examples/03-ai-content-workflow/conversation.md)
-
-每个案例都包含完整对话，以及 `project-output/docs/requirements/...` 下可直接参考的双文件需求包。
-
-## 卸载
-
-使用 Skill 安装器移除 `aef-user-story`，或删除项目级安装链接或目录。不要删除同一配置中的其他 Skill。
-
-## 开源协议
-
-MIT
+## 旧版资料与安装边界
+[旧版中文手册](docs/tutorials/aef-user-story-user-manual.zh-CN.md) 的安装与传统双文件流程仍可参考。
+使用 `npx skills add wukongai/aef-user-story` 安装仓库版本，安装时选择所需 Agent 与范围。需要固定版本时使用仓库 `v0.3.0` 标签对应内容；父包快照与已有安装不会自动升级。
+[旧版交付话术](docs/guides/user-delivery-messages.zh-CN.md) 同样保留。
+许可证 MIT，原始许可随包保留。

@@ -1,4 +1,6 @@
-# User Story 需求包格式
+# User Story 传统双文件需求包格式
+
+本页只约束传统 v1/v2；持续维护模式见 [continuous-maintenance.md](continuous-maintenance.md)。
 
 一个完整需求包只有两个文件：人读的 `user-story.md` 和机器读的 `story-card.json`。两者使用相同的 package、Story、Acceptance ID。
 
