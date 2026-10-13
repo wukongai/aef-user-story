@@ -1,0 +1,207 @@
+{
+  "schema_version": "aef-story-library/v1",
+  "workspace": {
+    "package_id": "REQ-001",
+    "context": {
+      "source": {
+        "summary": "用户希望点击逐字稿回到对应视频位置。",
+        "facts": [
+          "用户观看长视频"
+        ],
+        "assumptions": [
+          "第一版面向视频学习者"
+        ],
+        "unknowns": [
+          "首版视频来源范围"
+        ],
+        "constraints": [
+          "不锁定转写技术"
+        ]
+      },
+      "scope": {
+        "included": [
+          "点击定位"
+        ],
+        "excluded": [
+          "全文搜索"
+        ]
+      }
+    },
+    "origin": {
+      "schema_version": "aef-story-card/v2",
+      "card": {
+        "schema_version": "aef-story-card/v2",
+        "artifact_type": "aef-story-card",
+        "package_id": "REQ-001",
+        "status": "ready_for_spec",
+        "source": {
+          "summary": "用户希望点击逐字稿回到对应视频位置。",
+          "facts": [
+            "用户观看长视频"
+          ],
+          "assumptions": [
+            "第一版面向视频学习者"
+          ],
+          "unknowns": [
+            "首版视频来源范围"
+          ],
+          "constraints": [
+            "不锁定转写技术"
+          ]
+        },
+        "epic": {
+          "epic_id": "EPIC-001",
+          "title": "提升长视频学习效率",
+          "status": "identified",
+          "story_ids": [
+            "US-001"
+          ]
+        },
+        "stories": [
+          {
+            "story_id": "US-001",
+            "title": "点击逐字稿跳转视频",
+            "actor": "视频学习者",
+            "scenario": "阅读逐字稿时",
+            "goal": "点击文字跳到对应视频位置",
+            "value": "快速回看相关内容",
+            "statement": "作为视频学习者，当我阅读逐字稿时，我希望点击文字跳到对应视频位置，从而快速回看相关内容。",
+            "status": "approved",
+            "invest_review": {
+              "independent": {
+                "status": "pass",
+                "reason": "不依赖其他 Story"
+              },
+              "negotiable": {
+                "status": "pass",
+                "reason": "未锁定技术方案"
+              },
+              "valuable": {
+                "status": "pass",
+                "reason": "用户能快速回看内容"
+              },
+              "estimable": {
+                "status": "pass",
+                "reason": "范围和边界清楚"
+              },
+              "small": {
+                "status": "pass",
+                "reason": "只有一个用户结果"
+              },
+              "testable": {
+                "status": "pass",
+                "reason": "三类验收条件齐全"
+              }
+            },
+            "acceptance_ids": [
+              "AC-US-001-S",
+              "AC-US-001-F",
+              "AC-US-001-B"
+            ]
+          }
+        ],
+        "acceptance": [
+          {
+            "acceptance_id": "AC-US-001-S",
+            "story_id": "US-001",
+            "type": "success",
+            "given": "已有带时间戳逐字稿",
+            "when": "点击文字",
+            "then": "跳到对应时间"
+          },
+          {
+            "acceptance_id": "AC-US-001-F",
+            "story_id": "US-001",
+            "type": "failure",
+            "given": "解析失败",
+            "when": "打开逐字稿",
+            "then": "显示失败和重试入口"
+          },
+          {
+            "acceptance_id": "AC-US-001-B",
+            "story_id": "US-001",
+            "type": "boundary",
+            "given": "文字无时间戳",
+            "when": "点击文字",
+            "then": "不错误跳转并提示"
+          }
+        ],
+        "scope": {
+          "included": [
+            "点击定位"
+          ],
+          "excluded": [
+            "全文搜索"
+          ]
+        },
+        "reviews": {
+          "story": {
+            "status": "approved",
+            "confirmation": "explicit_user_confirmation",
+            "change_summary": []
+          },
+          "acceptance": {
+            "status": "approved",
+            "confirmation": "explicit_user_confirmation",
+            "change_summary": []
+          }
+        },
+        "delivery": {
+          "human_file": "./user-story.md",
+          "machine_file": "./story-card.json"
+        },
+        "next_step": {
+          "items": [
+            {
+              "route": "direct_spec",
+              "reason": "需求和验收边界已经清楚",
+              "capability": "spec-writing",
+              "story_ids": [
+                "US-001"
+              ],
+              "target_id": "SPEC-US-001",
+              "suggested_path": "docs/specs/SPEC-US-001.md",
+              "required_acceptance_ids": [
+                "AC-US-001-S",
+                "AC-US-001-F",
+                "AC-US-001-B"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "epics": [
+    {
+      "id": "EPIC-001",
+      "kind": "epic",
+      "versions": [
+        {
+          "revision": 1,
+          "content": {
+            "title": "提升长视频学习效率",
+            "outcome": "提升长视频学习效率"
+          },
+          "reason": "导入已有 Epic"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "id": "EP-002",
+      "kind": "epic",
+      "versions": [
+        {
+          "revision": 1,
+          "content": {
+            "title": "管理学习资料",
+            "outcome": "方便整理"
+          },
+          "reason": "示例新增史诗"
+        }
+      ],
+      "reviews": []
+    }
+  ]
+}

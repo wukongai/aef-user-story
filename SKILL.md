@@ -15,12 +15,18 @@ description: 当用户要从产品定义或原始需求梳理 Epic、用户故�
 输入可以是一句话、可读附件、产品定义或已有故事。区分 facts、assumptions、unknowns、constraints、solution ideas；未知不冒充事实，技术方案不冒充用户价值。
 编号不明先定位对应对象；读取失败说明未读，含敏感资料时使用脱敏摘要。
 
-## 两种交付模式
+## 默认故事库与旧版兼容
 
-- **持续维护模式**：用户要求独立/局部完善、编号版本管理，或已有 story-workspace.json 时使用。先读 [持续维护](references/continuous-maintenance.md)，以对象修订为单位工作。
+新建或持续维护默认使用[独立故事库](references/story-library.md)：一条故事一张卡，一个总索引按 Epic 归类，未归类故事单列。先读该说明再操作。
+每张可读卡以“作为……我希望……从而……”的一句话故事开头，验收条件直接按1、2、3列出可检查结果；不重复列用户/场景/目标/价值，不铺陈修订、确认、INVEST或验收内部字段。故事原句直接读取statement，禁止展示层改写；内容修改时同步核对原句与角色/场景/目标/价值，避免互相矛盾。必要业务约束另作简短说明；完整版本、确认和验收ID保留在对应独立 JSON。新增只增加该卡和数据并更新索引；修改只动对应文件及必要索引，不重写无关卡片。
+编号与文件路径稳定，语义变化追加修订；迁移保留原编号、修订和确认记录，不产生业务新版本。
+
+旧版兼容：
+
+- **0.3 集中包兼容模式**：已有 story-workspace.json 且未选择迁移时，按 [持续维护](references/continuous-maintenance.md) 保留原能力。转换故事库先预览新目录，保留旧包，不并行维护两个当前入口。
 - **传统双文件模式**：已有 StoryCard v1/v2，且只需原流程时保留原能力；读 [格式](references/user-story-format.md) 与 [项目保存](references/how-to-save-to-project.md)。双文件需求包仍为 user-story.md 与 story-card.json。不得把新模式内容冒充 v2，也不擅自迁移旧包。
 
-旧包切换持续维护模式先预览导入；保留原包，只维护一个当前入口。旧审批保留在来源快照，新模式确认需用户明确认可对应 ID 与修订。
+旧 StoryCard v1/v2 切换持续维护模式先预览导入；保留原包，只维护一个当前入口。旧审批保留在来源快照，新模式确认需用户明确认可对应 ID 与修订。
 
 ## 输出
 
@@ -75,12 +81,14 @@ description: 当用户要从产品定义或原始需求梳理 Epic、用户故�
 ### 7. 下游交接
 
 PRD 是可选路径。传统模式保留 direct_spec、prd、backlog、specialist_review 的结构化路由与原校验。
+故事库交接固定的 package_id、Story ID/revision、AC ID/revision 与卡片路径；迭代只引用故事，不复制正文。使用 reference/resolve 回读当时内容，当前卡变化不自动升级已选版本。活动验收仍绑定旧 Story 修订时先复审；退役验收不加入新引用，历史引用仍可解析。
 持续维护模式交接 Story/AC 的 ID、修订、确认记录、规则、未知和风险，不为了“完成本轮局部修改”强制生成下游文档或排期。
 AEF 生命周期状态仍由宿主拥有，见 [集成边界](references/aef-integration.md)。
 
 ## 校验与完成
 
-持续维护：python3 -B scripts/story_workspace.py validate <新包> --previous <旧包>。
+故事库：python3 -B scripts/story_library.py validate <新库> --previous <旧库>；保存前 check-plan 核对基线，人工改卡、路径异常或基线变化时停止覆盖。
+0.3 兼容：python3 -B scripts/story_workspace.py validate <新包> --previous <旧包>。
 传统模式：python3 scripts/validate_story_card.py <story-card.json> --json 与 python3 scripts/validate_story_package.py <需求目录> --json。
 完整回归：python3 -B -m unittest discover -s tests -p 'test_*.py'。
 工具仅验证结构和历史，不验证用户批准真实性或业务价值；没有 Python 时声明未做机器检查。

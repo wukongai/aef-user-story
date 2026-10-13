@@ -1,0 +1,51 @@
+{
+  "schema_version": "aef-story-card-file/v1",
+  "package_id": "REQ-001",
+  "story": {
+    "id": "US-003",
+    "kind": "story",
+    "versions": [
+      {
+        "revision": 1,
+        "content": {
+          "title": "未归类故事",
+          "actor": "视频学习者",
+          "scenario": "阅读逐字稿时",
+          "goal": "找到包含关键词的句子",
+          "value": "减少逐句浏览时间",
+          "statement": "作为视频学习者，当我记得一个关键词时，希望找到相关句子，从而减少逐句浏览。",
+          "invest_review": {
+            "independent": {
+              "status": "pass",
+              "reason": "不依赖其他 Story"
+            },
+            "negotiable": {
+              "status": "pass",
+              "reason": "未锁定技术方案"
+            },
+            "valuable": {
+              "status": "pass",
+              "reason": "用户能快速回看内容"
+            },
+            "estimable": {
+              "status": "pass",
+              "reason": "范围和边界清楚"
+            },
+            "small": {
+              "status": "pass",
+              "reason": "只有一个用户结果"
+            },
+            "testable": {
+              "status": "pass",
+              "reason": "三类验收条件齐全"
+            }
+          },
+          "selection": "approved"
+        },
+        "reason": "示例保留待归类故事"
+      }
+    ],
+    "reviews": []
+  },
+  "acceptance": []
+}

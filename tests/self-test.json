@@ -46,6 +46,12 @@
       "script": "tests/test_story_workspace.py",
       "expected_exit": 0,
       "timeout_seconds": 30
+    },
+    {
+      "id": "story-library-regression",
+      "script": "tests/test_story_library.py",
+      "expected_exit": 0,
+      "timeout_seconds": 30
     }
   ]
 }

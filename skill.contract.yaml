@@ -2,7 +2,7 @@ name: aef-user-story
 kind: technique
 owner: wukongai
 status: released
-version: 0.3.0
+version: 0.4.0
 scope: direct/manual/composed
 
 inputs:
@@ -20,6 +20,12 @@ inputs:
     required: false
 
 outputs:
+  - name: story_library
+    type: aef-story-library/v1
+    required: false
+  - name: pinned_story_reference
+    type: story_and_acceptance_revisions
+    required: false
   - name: continuous_story_workspace
     type: aef-story-workspace/v1
     required: false
@@ -87,10 +93,12 @@ side_effect_boundary:
   lifecycle_state_owned_by_host: true
 
 state:
-  strategy: per-object append-only snapshots and reviews in aef-story-workspace/v1; legacy aef-story-card/v2 preserved
+  strategy: per-story independent data and Markdown cards with Epic index in aef-story-library/v1; append-only versions; workspace/v1 and story-card/v2 compatibility preserved
   secrets_allowed: false
 
 scripts:
+  - path: scripts/story_library.py
+    side_effect: none
   - path: scripts/story_workspace.py
     side_effect: none
   - path: scripts/validate_story_card.py
@@ -104,6 +112,7 @@ tests:
     - python3 tests/test_validate_story_package.py -v
     - python3 tests/test_skill_contract.py -v
     - python3 tests/test_examples.py -v
+    - python3 -B tests/test_story_library.py -v
   fixtures:
     valid_v1: tests/fixtures/valid-story-card.json
     valid_v2: tests/fixtures/valid-story-card-v2.json
