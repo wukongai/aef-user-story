@@ -1,8 +1,8 @@
 name: aef-user-story
 kind: technique
 owner: wukongai
-status: released
-version: 0.4.0
+status: candidate
+version: 0.5.0
 scope: direct/manual/composed
 
 inputs:
@@ -20,6 +20,12 @@ inputs:
     required: false
 
 outputs:
+  - name: product_system_outline
+    type: versioned_project_markdown
+    required: false
+  - name: mvp_scope_proposal
+    type: versioned_references_and_scope_decision
+    required: false
   - name: story_library
     type: aef-story-library/v1
     required: false

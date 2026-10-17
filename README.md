@@ -1,3 +1,11 @@
+# 0.5.0 候选：产品系统与用户故事
+
+可单独使用，也可由aef-product连续调用。整体请求从产品组成、业务对象关系和整体流程进入粗Epic、MVP范围，再细化选中故事；局部修改仍直接进入指定卡片。
+
+[完整第二阶段方法](references/product-system.md) · [首轮对话示例](examples/06-system-to-story/README.md) · [行为评审场景](tests/system-dialogue-cases.md)
+
+本版供本地试用，尚未发布；实际项目效果待用户验证。下文0.4为已发布故事库能力说明。
+
 # AEF User Story
 
 0.4.0：将产品定义、口述需求和持续反馈整理为可持续维护的故事库。一条 Story 一张独立卡片，一个总索引按 Epic 归类。
@@ -48,4 +56,4 @@ python3 -B scripts/story_library.py validate examples/05-story-library/library -
 
 [0.3 持续维护核心](references/continuous-maintenance.md)、[旧版中文手册](docs/tutorials/aef-user-story-user-manual.zh-CN.md)和[旧版交付话术](docs/guides/user-delivery-messages.zh-CN.md)仍保留。本文为新版入口，旧手册的集中包保存方式仅用于兼容模式。
 
-本版对应 v0.4.0，变化与验证见 [发布说明](docs/releases/v0.4.0.md)。父包快照和已有安装不会自动升级。MIT 许可保留。
+以上故事库基础能力对应已发布 v0.4.0，历史变化与验证见 [发布说明](docs/releases/v0.4.0.md)。父包快照和已有安装不会自动升级。MIT 许可保留。
