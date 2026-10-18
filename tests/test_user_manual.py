@@ -89,7 +89,7 @@ class UserManualTests(unittest.TestCase):
     def test_optional_pudding_projection_matches_public_manual(self):
         projected_path = os.environ.get("AEF_USER_STORY_PUDDING_MANUAL")
         if not projected_path:
-            self.skipTest("未提供布丁投影路径")
+            self.skipTest("未提供外部文档平台投影路径")
         public_body = MANUAL.read_text(encoding="utf-8").strip()
         projected_body = strip_frontmatter(
             Path(projected_path).read_text(encoding="utf-8")

@@ -486,7 +486,7 @@ Run: `python3 tests/test_skill_contract.py -v`
 
 Expected: 全部 PASS。
 
-Run: `python3 /Users/aim5/.codex/skills/skill-engineering/scripts/content_gate.py . --json`
+Run: `python3 ~/.codex/skills/skill-engineering/scripts/content_gate.py . --json`
 
 Expected: `status: pass`，无断链 reference。
 
@@ -656,16 +656,16 @@ git commit -m "docs: 更新 aef-user-story 0.2.0 说明"
 - [ ] **Step 1: 运行内容与创建门禁**
 
 ```bash
-python3 /Users/aim5/.codex/skills/skill-engineering/scripts/content_gate.py . --json
-python3 /Users/aim5/.codex/skills/skill-engineering/scripts/creation_review.py . --profile production --json
-python3 /Users/aim5/.codex/skills/skill-engineering/scripts/skill_self_test.py . --json
+python3 ~/.codex/skills/skill-engineering/scripts/content_gate.py . --json
+python3 ~/.codex/skills/skill-engineering/scripts/creation_review.py . --profile production --json
+python3 ~/.codex/skills/skill-engineering/scripts/skill_self_test.py . --json
 ```
 
 Expected: Content Gate pass；Production Review 100/A 或无阻断 finding；Portable Self Test pass 且 `target_unchanged: true`。
 
 - [ ] **Step 2: 运行公开内容扫描**
 
-Run: `rg -n '<占位词>|T[B]D|待[补]|/Users/aim5|CodingProject|训练营第|课程第|story_points|suggested_points|points:' SKILL.md README.md references examples`
+Run: `rg -n '<占位词>|T[B]D|待[补]|/Users/<user>|CodingProject|训练营第|课程第|story_points|suggested_points|points:' SKILL.md README.md references examples`
 
 Expected: 零命中；设计/计划和命令示例不在公开 Skill 内容扫描范围。
 
