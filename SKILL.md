@@ -1,6 +1,6 @@
 ---
 name: aef-user-story
-description: 当用户要从产品定义、原始想法或已有需求梳理Epic、用户故事、验收条件和MVP范围，或新增、拆分、修改某条故事及验收时使用。可独立使用，也可由AEF Product连续调用。不用于技术设计、编码或独立执行地图与迭代排期。
+description: 当用户要从产品定义、原始想法或已有需求梳理Epic、用户故事、验收条件和MVP范围，或新增、拆分、修改某条故事及验收时使用。可独立使用，也可由AEF Product连续调用。不用于现成工具推荐、技术设计、编码或独立执行地图与迭代排期。
 ---
 
 # AEF User Story
@@ -32,7 +32,7 @@ MVP引用故事，不另写一套需求正文。由用户确认范围；只修�
 
 ### 4. 细化选中故事与验收条件
 与用户讨论、拆分和修改选中的故事；对准备细化的Story检查INVEST，不计算 Story Points。粗Epic和暂缓项不要求全部展开。
-确认故事后，再把可观察的正常、失败和边界结果写成编号验收条件；故事确认与验收确认分别处理。需要登记确认或修订时读取[操作规则](references/story-operations.md)。
+确认故事后，再把可观察的正常、失败和边界结果写成编号验收条件；故事确认与验收确认分别处理。仅在操作具体Story/AC对象的内容、修订或确认记录时读取[操作规则](references/story-operations.md)。
 
 ## 输出
 
@@ -58,14 +58,15 @@ MVP引用故事，不另写一套需求正文。由用户确认范围；只修�
 ## 收口与下一步
 
 当前粒度的故事或范围已经可审阅，就提交结果，说明真正影响决策的未决项；不为填满所有细节延长访谈。草稿、内容确认、范围确认、保存和开发批准分别判断。
-只做故事或MVP时，在对应交付处结束。用户要求地图或Sprint时，按[下游交接](references/product-system.md)传递固定故事引用及已有决定，由可用Product模块承接；独立环境缺少模块时提供交接摘要并说明未执行。
+只做故事或MVP时，在对应交付处结束。用户要求地图或Sprint时，按[下游交接](references/downstream-handoff.md)传递固定故事引用及已有决定，由可用Product模块承接；独立环境缺少模块时提供交接摘要并说明未执行。
 产品详细设计、PRD、工程Spec/Plan/Task、技术设计和编码属于后续能力，本Skill不生成这些产物，也不自动启动开发或发布。
 
 ## 按需读取的支持规则
 
 | 实际场景 | 读取资源 |
 |---|---|
-| 新增、修改、拆分、合并已有故事，或登记Story/验收确认 | [操作规则](references/story-operations.md)与[独立故事库](references/story-library.md)；只处理相关对象 |
+| 仅调整对话中的粗故事集合或MVP选中/暂缓范围，未操作具体Story/AC记录 | 沿用当前业务方法与对话稿；无需读取操作规则、故事库或保存规则 |
+| 新增、修改、拆分、合并具体Story/AC对象，或登记其确认 | [操作规则](references/story-operations.md)与[独立故事库](references/story-library.md)；只处理相关对象 |
 | 用户要求保存、校验、管理编号版本或生成下游引用 | [操作规则](references/story-operations.md)，再按实际数据格式使用其中的方法与工具 |
 | 项目已有旧格式文件，或用户明确要求迁移 | [旧格式兼容](references/legacy-compatibility.md)；先识别现有格式，保持原能力 |
 | 用户反馈跑偏、提出旁支、明确停止/换任务或恢复任务 | [任务边界与纠偏](references/task-focus.md)及[本能力交付与收口](references/task-focus-adapter.md) |

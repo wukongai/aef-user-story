@@ -1,0 +1,98 @@
+{
+  "version": "0.5.0",
+  "utility_claim": "not-evaluated",
+  "suites": [
+    {
+      "path": "system-dialogue-cases.md",
+      "status": "not-evaluated",
+      "evidence": null
+    },
+    {
+      "path": "core-unit-mvp-cases.md",
+      "status": "not-evaluated",
+      "evidence": null
+    },
+    {
+      "path": "stage-closure-cases.md",
+      "status": "not-evaluated",
+      "evidence": null
+    },
+    {
+      "path": "story-map-handoff-cases.md",
+      "status": "not-evaluated",
+      "evidence": null
+    },
+    {
+      "path": "iteration-handoff-cases.md",
+      "status": "not-evaluated",
+      "evidence": null
+    },
+    {
+      "path": "task-focus-cases.md",
+      "status": "not-evaluated",
+      "evidence": null
+    }
+  ],
+  "runs": [
+    {
+      "id": "new-product",
+      "input": "社区工具借用，先整体故事与MVP，不保存",
+      "required": [
+        "references/product-system.md"
+      ],
+      "avoid": [
+        "references/system-maintenance.md",
+        "references/legacy-compatibility.md",
+        "references/story-operations.md",
+        "references/story-library.md"
+      ],
+      "observe": [
+        "整体候选",
+        "未知诚实",
+        "交付后停止",
+        "无写入"
+      ],
+      "status": "not-evaluated"
+    },
+    {
+      "id": "local-ac",
+      "input": "只修改US-003一条失败验收，不保存",
+      "required": [
+        "references/story-operations.md",
+        "references/story-library.md"
+      ],
+      "avoid": [
+        "references/continuous-maintenance.md",
+        "references/product-system.md"
+      ],
+      "observe": [
+        "只动目标AC候选",
+        "Story修订保持",
+        "无写入"
+      ],
+      "status": "not-evaluated",
+      "semantic_requirements": [
+        "只改AC不变Story修订与批准",
+        "AC新修订单独确认",
+        "保留历史与固定引用",
+        "措辞确认不等于保存"
+      ],
+      "conditional_reads": {
+        "references/revision-core.md": "已加载规则未覆盖所需语义，或涉及新编号、跨包、拆分合并、退役等对应动作时读取；不是每次局部修改的必读文件"
+      }
+    }
+  ],
+  "record_fields": [
+    "source_hash",
+    "host",
+    "input",
+    "response",
+    "loaded_files_in_order",
+    "approval_state",
+    "file_diff",
+    "stop_reason",
+    "result",
+    "reviewer"
+  ],
+  "loading_verdict": "核对本轮动作所需语义是否已覆盖；不以访问固定文件数量代替正确性；同时检查无关规则加载。"
+}

@@ -19,22 +19,6 @@ versions 每项包含 revision（从 1 连续递增）、content、reason；revi
 内容和批准分开；当前审阅状态从当前修订的最后一条决定派生，没有决定就是 draft。
 概括故事可以没有 AC，工具不会因此拒绝合法草稿。准备交接开发时才检查完整就绪条件。
 
-## 编号
-优先保留项目已有格式，包括 EPIC-001、US-001、AC-US-001-S。
-新编号可用 EP-001、US-001、AC-001。编号不包含迭代号，不随顺序、标题或状态变化。
-编号至少包内唯一；跨包引用必须使用 package_id/id，宿主新增前扫描项目其他包，避免误认同名 ID。
-next-id 只保证本包内未用，并扫描已退役编号；不宣称检查了其他包。
-对象退役用 content.lifecycle=retired，保留记录。拆分/合并新对象记录 derived_from；先新增，再经用户决定退役原对象，不从缺失内容推断删除。
-
-## 修订与批准
-每次内容变化追加修订；旧快照不改写。纯排版发生在 Markdown 渲染层，不改变 JSON 内容修订。
---expect 必须等于读到的当前修订；过期时先读新内容再重新评估。
-改 Story 后旧 AC 仍绑定旧 revision，status 会报告 stale_acceptance；不能只改绑定号，必须逐项复核内容后创建新 AC 修订。
-改 AC 不改变 Story；AC 新修订的旧批准无效。
-Story 批准、AC 批准和写文件授权分开；review CLI 的 actor/ref 必须来自真实确认，工具不会判断真假。
-高风险需求在 context 和对应故事中保留风险、未知与待决定 owner；结构 ready 不代表专项批准。
-reject 可记录撤回/不通过；历史事件保留。
-
 ## 保存与恢复
 默认候选目录 docs/requirements/<slug>/，AEF 已有 requirements/<需求名>/story.md 则沿用其人读位置。
 持续维护 JSON 为 story-workspace.json；人读文件使用 render 输出。此模式 JSON 为唯一可编辑事实源，Markdown 是投影；不手工双写。
@@ -69,15 +53,6 @@ python3 -B scripts/story_workspace.py render story-workspace.json
 --previous 必须提供更新前的可信基线；单独 validate 只能验证内部结构，不能证明历史未被篡改。
 退出 0 为成功，1 为内容/引用/修订错误，2 为用法或文件读取错误。
 
-## 内容字段
-Epic：title、outcome。
-Story：title、actor、scenario、goal、value、statement；可选 epic_id、invest_review、规则/风险/证据。
-INVEST 的六项用 status=pass/risk/fail 与 reason；缺项允许为草稿，不能就绪。
-Acceptance：story_id、story_revision、type=success/failure/boundary、given、when、then。
-三类对象均可含 lifecycle=active/retired、derived_from；扩展字段仅表示业务事实；id/revision/reviews 由对象封装字段定义。
-编号、修订、审批字段放对象封装层，不能藏进 content 冒充系统状态。
 
-## 完成边界
-本轮只细化故事就交付该故事；不要求同时完善所有故事、创建地图、选迭代或编写产品详细设计。
-候选模式可交付草稿；正式就绪须逐对象真实确认、INVEST 六项 pass、三类已确认验收。
-旧模式中的独立 PRD/Spec 路由保留，不因新持续维护模式而删除旧接口。
+## 共用状态语义
+编号、修订、确认、内容字段与就绪条件见[共用核心](revision-core.md)；本页仅在workspace兼容模式读取。

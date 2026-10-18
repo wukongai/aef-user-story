@@ -1,13 +1,13 @@
 id: BEH-US-001
 category: success
-input: "哪个工具能解析视频，显示文字，点击文字回到对应视频？"
+input: "我要做一个视频学习产品，让用户点击逐字稿回到对应视频位置，请帮我梳理用户故事。"
 expected:
   trigger: true
   must_do:
     - "区分原始事实、假设和后续功能建议"
     - "识别帮助用户从视频内容中定位信息的 Epic"
     - "形成至少一条端到端候选 Story"
-    - "解释并推荐 first cut"
+    - "按当前目标提出首版范围候选，不自动批准"
   must_not_do:
     - "生成正式 PRD"
     - "生成技术 Spec 或代码"
