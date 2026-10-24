@@ -1,7 +1,12 @@
 {
-  "version": "0.5.0",
+  "version": "0.6.0",
   "utility_claim": "not-evaluated",
   "suites": [
+    {
+      "path": "completeness-cases.json",
+      "status": "not-evaluated",
+      "evidence": null
+    },
     {
       "path": "system-dialogue-cases.md",
       "status": "not-evaluated",
@@ -58,8 +63,7 @@
       "id": "local-ac",
       "input": "只修改US-003一条失败验收，不保存",
       "required": [
-        "references/story-operations.md",
-        "references/story-library.md"
+        "references/story-editing.md"
       ],
       "avoid": [
         "references/continuous-maintenance.md",

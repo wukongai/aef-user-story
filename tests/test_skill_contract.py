@@ -85,7 +85,7 @@ class SkillContractTests(unittest.TestCase):
 
     def test_contract_declares_v2_and_project_write_preview(self) -> None:
         text = (ROOT / "skill.contract.yaml").read_text(encoding="utf-8")
-        self.assertIn("version: 0.5.0", text)
+        self.assertIn("version: 0.6.0", text)
         self.assertIn("aef-story-card/v2", text)
         self.assertIn("project_write_preview", text)
 

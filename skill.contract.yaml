@@ -1,8 +1,8 @@
 name: aef-user-story
 kind: technique
 owner: wukongai
-status: candidate
-version: 0.5.0
+status: released
+version: 0.6.0
 scope: direct/manual/composed
 
 inputs:
@@ -22,6 +22,9 @@ inputs:
 outputs:
   - name: product_system_outline
     type: versioned_project_markdown
+    required: false
+  - name: delivery_review_record
+    type: aef-story-delivery-review/v1
     required: false
   - name: mvp_scope_proposal
     type: versioned_references_and_scope_decision
@@ -103,6 +106,8 @@ state:
   secrets_allowed: false
 
 scripts:
+  - path: scripts/validate_delivery_review.py
+    side_effect: none
   - path: scripts/story_library.py
     side_effect: none
   - path: scripts/story_workspace.py
@@ -114,6 +119,8 @@ scripts:
 
 tests:
   commands:
+    - python3 -B tests/test_delivery_review.py
+    - python3 -B tests/test_delivery_review_native.py
     - python3 tests/test_validate_story_card.py -v
     - python3 tests/test_validate_story_package.py -v
     - python3 tests/test_skill_contract.py -v
@@ -125,6 +132,7 @@ tests:
     invalid_v2: tests/fixtures/invalid-story-card-v2.json
   scenario_index: tests/scenario-index.json
   regression_cases:
+    - tests/completeness-cases.json
     - tests/cases/tool-recommendation.yaml
     - tests/system-dialogue-cases.md
     - tests/core-unit-mvp-cases.md
@@ -138,7 +146,7 @@ tests:
     - tests/cases/negative-trigger.yaml
 
 evaluation:
-  suite_id: aef-user-story-v0-5
+  suite_id: aef-user-story-v0-6-rc1
   score_scope: structural_readiness
   claims:
     utility: false
