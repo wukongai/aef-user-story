@@ -1,5 +1,7 @@
 # AEF User Story 0.7.0：用户价值与两次人审
 
+当前正式分发：[0.7.0固定下载](https://github.com/wukongai/aef-user-story/releases/tag/v0.7.0) · [最新正式版](https://github.com/wukongai/aef-user-story/releases/latest) · [本轮工程回执](https://github.com/wukongai/AEF/blob/main/docs/releases/2026-10-29-story-070-main-latest.md)。下述本地封版记录形成于正式发行前，作为历史保留；正式包复用原v0.7.0标签，方法与124文件冻结内容不变。主线本条只更新当前发行入口。
+
 先分析用户分类与重要性、核心任务和价值，交Epic结构及少量真实代表Story供方向审核；方向认可后展开完整Story，再由用户审核具体ID/修订。通过后才细化正式AC及交接正式原型。局部修改和仍有效的既有认可直接复用，MVP按需讨论。方向认可、故事确认、验收确认、保存和开发批准分别处理。
 
 [技能入口](SKILL.md) · [完整性方法](references/product-system.md#从系统承诺反向核对故事) · [粒度上下界](references/how-to-write-user-story.md#结果粒度的上下界) · [按事实选择独立评审](references/story-delivery-review.md)
