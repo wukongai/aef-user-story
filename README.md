@@ -1,4 +1,6 @@
-# AEF User Story 0.6.0：故事完整性与独立交付评审
+# AEF User Story 0.7.0：用户价值与两次人审
+
+先分析用户分类与重要性、核心任务和价值，交Epic结构及少量真实代表Story供方向审核；方向认可后展开完整Story，再由用户审核具体ID/修订。通过后才细化正式AC及交接正式原型。局部修改和仍有效的既有认可直接复用，MVP按需讨论。方向认可、故事确认、验收确认、保存和开发批准分别处理。
 
 [技能入口](SKILL.md) · [完整性方法](references/product-system.md#从系统承诺反向核对故事) · [粒度上下界](references/how-to-write-user-story.md#结果粒度的上下界) · [按事实选择独立评审](references/story-delivery-review.md)
 
@@ -6,9 +8,9 @@
 
 保留Product/安装副本已使用的修改确认与落盘分层、按需补读修订核心、MVP验证承接表。独立维护源仍是owner；副本不是第二套维护源。此版本向后兼容扩展方法与可选 `aef-story-delivery-review/v1` 证据账本，产品数据schema不变。
 
-`python3 -B scripts/validate_delivery_review.py <记录.json> --root <证据根>` 只读核对输入指纹、真实证据与归属记录，不评分语义、不认证独立性/人工批准或效用。[16个语义开发场景](tests/completeness-cases.json)需在新上下文产生实际输出后再评审；测试定义存在不代表已通过。发布包的声明索引保留未评估状态，具体维护运行证据另存owner工程，不能误认历史套件全量跑过。
+`python3 -B scripts/validate_delivery_review.py <记录.json> --root <证据根>` 只读核对输入指纹、真实证据与归属记录，不评分语义、不认证独立性/人工批准或效用。[语义开发场景及新增回归](tests/completeness-cases.json)需在新上下文产生实际输出后再评审；测试定义存在不代表已通过。发布包的声明索引保留未评估状态，具体维护运行证据另存owner工程，不能误认历史套件全量跑过。
 
-本版本按已复查候选封板；[发布说明](docs/releases/v0.6.0.md)记录能力、验证与回退。独立库和Product内置子包使用同一正式内容。结构检查、AI模拟审查与真人效用分开报告；没有真人试用/留出集证据，不宣称效果或泛化已验证。
+本版本用于本地封版；[0.7.0说明](docs/releases/v0.7.0.md)记录人审、兼容与回退边界，[0.6.0历史说明](docs/releases/v0.6.0.md)保留。Product探索适配作为本地衔接单列，不成为第二套Story方法。结构检查、模拟对话与真人效用分别报告，封版不表示真实业务效果已验证或公开发布。
 
 # 0.5.0 历史候选：产品系统与用户故事
 

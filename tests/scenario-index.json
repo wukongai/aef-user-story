@@ -1,7 +1,12 @@
 {
-  "version": "0.6.0",
+  "version": "0.7.0",
   "utility_claim": "not-evaluated",
   "suites": [
+    {
+      "path": "review-gate-cases.json",
+      "status": "not-evaluated",
+      "evidence": null
+    },
     {
       "path": "completeness-cases.json",
       "status": "not-evaluated",
