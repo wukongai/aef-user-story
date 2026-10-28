@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "tests": [
+    {
+      "id": "story-card-validator-requires-input",
+      "script": "scripts/validate_story_card.py",
+      "expected_exit": 2,
+      "stdout_contains": [
+        "[usage]",
+        "validate_story_card.py <story-card.json>"
+      ],
+      "timeout_seconds": 10
+    },
+    {
+      "id": "story-package-validator-requires-input",
+      "script": "scripts/validate_story_package.py",
+      "expected_exit": 2,
+      "stdout_contains": [
+        "[usage]",
+        "validate_story_package.py <directory>"
+      ],
+      "timeout_seconds": 10
+    },
+    {
+      "id": "story-card-validator-contract",
+      "script": "scripts/self_test.py",
+      "expected_exit": 0,
+      "stdout_json_keys": [
+        "ok",
+        "checks.valid_story_card_passes",
+        "checks.invalid_story_card_fails",
+        "checks.invalid_categories_covered",
+        "checks.missing_acceptance_reference_reported",
+        "checks.valid_v1_story_card_passes",
+        "checks.valid_v2_story_card_passes",
+        "checks.invalid_v2_story_card_fails",
+        "checks.v2_invest_and_route_failures_reported"
+      ],
+      "stdout_contains": [
+        "\"ok\": true"
+      ],
+      "timeout_seconds": 10
+    },
+    {
+      "id": "continuous-workspace-regression",
+      "script": "tests/test_story_workspace.py",
+      "expected_exit": 0,
+      "timeout_seconds": 30
+    },
+    {
+      "id": "story-library-regression",
+      "script": "tests/test_story_library.py",
+      "expected_exit": 0,
+      "timeout_seconds": 30
+    }
+  ]
+}

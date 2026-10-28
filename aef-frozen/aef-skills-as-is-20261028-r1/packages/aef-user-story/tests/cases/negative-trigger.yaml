@@ -1,0 +1,13 @@
+id: BEH-US-008
+category: negative-trigger
+input: "需求已经确认了，请直接设计数据库、API、Spec 并写代码。"
+expected:
+  trigger: false
+  must_do:
+    - "说明该请求属于技术设计或实现阶段"
+    - "如已有 StoryCard，仅把它作为下游输入引用"
+  must_not_do:
+    - "重新塑造已经确认且用户不要求修改的 Story"
+    - "以本 Skill 名义生成架构、Spec 或代码"
+    - "扩大到完整产品生命周期"
+  stop_at: route_elsewhere

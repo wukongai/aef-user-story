@@ -1,0 +1,20 @@
+{
+  "package_id": "REQ-001",
+  "story_id": "US-001",
+  "story_revision": 1,
+  "acceptance_refs": [
+    {
+      "id": "AC-US-001-B",
+      "revision": 1
+    },
+    {
+      "id": "AC-US-001-F",
+      "revision": 2
+    },
+    {
+      "id": "AC-US-001-S",
+      "revision": 1
+    }
+  ],
+  "card_path": "stories/US-001.md"
+}

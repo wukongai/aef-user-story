@@ -1,0 +1,10 @@
+id: BEH-US-TOOL
+category: negative-trigger
+input: "哪个现成工具能解析视频，点击文字回到视频？不要做产品设计。"
+expected:
+  trigger: false
+  must_do:
+    - "由宿主转工具推荐；意图不清才最小澄清"
+  must_not_do:
+    - "强制形成Epic、Story或MVP"
+  stop_at: route_elsewhere

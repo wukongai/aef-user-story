@@ -1,0 +1,44 @@
+{
+  "schema_version": "aef-story-card/v1",
+  "artifact_type": "formal-prd",
+  "review_state": {"story": "candidate", "acceptance": "approved"},
+  "source_summary": "",
+  "facts": "not-a-list",
+  "assumptions": [],
+  "unknowns": [],
+  "constraints": [],
+  "epic": {},
+  "stories": [
+    {
+      "story_id": "US-001",
+      "actor": "",
+      "scenario": "",
+      "goal": "",
+      "value": "",
+      "statement": "",
+      "status": "done",
+      "source_refs": [],
+      "acceptance_ids": ["AC-DUP", "AC-MISSING"]
+    },
+    {
+      "story_id": "US-001",
+      "actor": "用户",
+      "scenario": "任意场景",
+      "goal": "任意目标",
+      "value": "任意价值",
+      "statement": "重复 ID",
+      "status": "approved",
+      "source_refs": [],
+      "acceptance_ids": []
+    }
+  ],
+  "selected_story_id": "US-404",
+  "vertical_slice_review": {},
+  "acceptance": [
+    {"acceptance_id": "AC-DUP", "story_id": "US-404", "type": "success", "given": "", "when": "", "then": ""},
+    {"acceptance_id": "AC-DUP", "story_id": "US-001", "type": "internal", "given": "接口写完", "when": "代码合并", "then": "测试通过"}
+  ],
+  "non_goals": [],
+  "deferred_story_ids": ["US-404"],
+  "prd_handoff": {"status": "ready", "approved_story_ids": ["US-404"], "open_questions": []}
+}

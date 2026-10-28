@@ -1,0 +1,22 @@
+{
+  "schema_version": "aef-story-card/v2",
+  "artifact_type": "aef-story-card",
+  "package_id": "REQ-VIDEO-TRANSCRIPT-JUMP",
+  "status": "ready_for_spec",
+  "source": {"summary": "点击视频逐字稿跳到对应视频位置。", "facts": ["需要文字到视频时间位置的跳转"], "assumptions": ["首版主要用户是视频学习者"], "unknowns": ["首版支持哪些视频来源"], "constraints": ["不锁定转写技术"]},
+  "epic": {"epic_id": "EPIC-001", "title": "提升长视频学习和回看效率", "status": "identified", "story_ids": ["US-001"]},
+  "stories": [{
+    "story_id": "US-001", "title": "点击逐字稿跳转视频", "actor": "视频学习者", "scenario": "阅读带时间信息的逐字稿时", "goal": "点击文字跳到对应视频位置", "value": "快速回看相关原始内容", "statement": "作为视频学习者，当我阅读带时间信息的逐字稿时，我希望点击文字跳到对应视频位置，从而快速回看相关原始内容。", "status": "approved",
+    "invest_review": {"independent": {"status": "pass", "reason": "可作为单一定位能力独立交付"}, "negotiable": {"status": "pass", "reason": "未锁定转写或播放器实现"}, "valuable": {"status": "pass", "reason": "学习者可快速回看原始内容"}, "estimable": {"status": "pass", "reason": "主路径和异常边界清楚"}, "small": {"status": "pass", "reason": "只包含点击定位一个结果"}, "testable": {"status": "pass", "reason": "三类外部验收齐全"}},
+    "acceptance_ids": ["AC-US-001-S", "AC-US-001-F", "AC-US-001-B"]
+  }],
+  "acceptance": [
+    {"acceptance_id": "AC-US-001-S", "story_id": "US-001", "type": "success", "given": "视频已有带时间信息的逐字稿", "when": "用户点击任意一句文字", "then": "视频跳转并播放该句对应的位置"},
+    {"acceptance_id": "AC-US-001-F", "story_id": "US-001", "type": "failure", "given": "视频逐字稿解析失败", "when": "用户打开逐字稿区域", "then": "系统显示失败原因和重新解析入口"},
+    {"acceptance_id": "AC-US-001-B", "story_id": "US-001", "type": "boundary", "given": "某句文字没有有效时间信息", "when": "用户点击该句文字", "then": "系统不改变播放位置，说明无法定位并提供重新解析入口"}
+  ],
+  "scope": {"included": ["点击逐字稿定位视频"], "excluded": ["全文搜索", "摘要", "翻译", "学习笔记"]},
+  "reviews": {"story": {"status": "approved", "confirmation": "explicit_user_confirmation", "change_summary": ["actor 从视频用户改为视频学习者"]}, "acceptance": {"status": "approved", "confirmation": "explicit_user_confirmation", "change_summary": ["boundary 增加重新解析入口"]}},
+  "delivery": {"human_file": "./user-story.md", "machine_file": "./story-card.json"},
+  "next_step": {"items": [{"route": "direct_spec", "reason": "单一 Story 的范围和三类验收已经清楚", "capability": "spec-writing", "story_ids": ["US-001"], "target_id": "SPEC-US-001", "suggested_path": "docs/specs/SPEC-US-001.md", "required_acceptance_ids": ["AC-US-001-S", "AC-US-001-F", "AC-US-001-B"]}]}
+}

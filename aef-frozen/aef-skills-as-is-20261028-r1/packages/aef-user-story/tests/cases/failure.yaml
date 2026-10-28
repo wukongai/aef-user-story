@@ -1,0 +1,14 @@
+id: BEH-US-006
+category: failure
+input: "增加 AI 总结。"
+expected:
+  trigger: true
+  must_do:
+    - "指出主要用户、使用场景和预期价值仍未知"
+    - "一次只询问一个最能改变拆分结果的问题"
+    - "未确认内容保持 unknown"
+  must_not_do:
+    - "凭空补齐完整用户画像"
+    - "直接输出 approved Story"
+    - "直接生成 Acceptance"
+  stop_at: clarification

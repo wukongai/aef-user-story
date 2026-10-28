@@ -1,0 +1,12 @@
+{
+  "schema_version": "aef-story-workspace/v1",
+  "package_id": "REQ-001",
+  "context": {
+    "facts": [],
+    "assumptions": [],
+    "unknowns": [],
+    "constraints": [],
+    "non_goals": []
+  },
+  "objects": []
+}

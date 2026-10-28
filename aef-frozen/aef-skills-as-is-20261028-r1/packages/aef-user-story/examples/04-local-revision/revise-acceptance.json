@@ -1,0 +1,8 @@
+{
+  "story_id": "US-001",
+  "type": "failure",
+  "given": "解析失败",
+  "when": "打开逐字稿",
+  "then": "明确说明失败原因并允许重新上传",
+  "story_revision": 1
+}

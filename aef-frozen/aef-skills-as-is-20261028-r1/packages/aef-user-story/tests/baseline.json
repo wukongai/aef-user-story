@@ -1,0 +1,5 @@
+{
+  "status": "baseline_pending",
+  "reason": "0.2.0 的三个案例来自作者上下文，只能证明结构与已设计行为回归，不构成独立效用 baseline。",
+  "cases": []
+}

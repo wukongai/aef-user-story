@@ -1,0 +1,71 @@
+{
+  "schema_version": "aef-story-card/v2",
+  "artifact_type": "aef-story-card",
+  "package_id": "REQ-INVALID",
+  "status": "ready_for_spec",
+  "source": {
+    "summary": "一个故意无效的 v2 卡片。",
+    "facts": [],
+    "assumptions": [],
+    "unknowns": [],
+    "constraints": []
+  },
+  "epic": {
+    "epic_id": "EPIC-INVALID",
+    "title": "无效案例",
+    "status": "identified",
+    "story_ids": ["US-001", "US-404"]
+  },
+  "stories": [
+    {
+      "story_id": "US-001",
+      "title": "无效 Story",
+      "actor": "用户",
+      "scenario": "使用功能时",
+      "goal": "完成目标",
+      "value": "获得价值",
+      "statement": "作为用户，当我使用功能时，我希望完成目标，从而获得价值。",
+      "status": "approved",
+      "invest_review": {
+        "independent": {"status": "pass", "reason": "可独立理解"},
+        "negotiable": {"status": "pass", "reason": "未锁定实现"},
+        "estimable": {"status": "pass", "reason": "边界明确"},
+        "small": {"status": "pass", "reason": "单一结果"},
+        "testable": {"status": "pass", "reason": ""}
+      },
+      "acceptance_ids": ["AC-US-001-S", "AC-US-001-F", "AC-US-001-B"]
+    }
+  ],
+  "acceptance": [
+    {"acceptance_id": "AC-US-001-S", "story_id": "US-001", "type": "success", "given": "条件成立", "when": "执行动作", "then": "得到结果"},
+    {"acceptance_id": "AC-US-001-F", "story_id": "US-001", "type": "failure", "given": "处理失败", "when": "执行动作", "then": "显示失败状态"}
+  ],
+  "scope": {"included": ["核心范围"], "excluded": []},
+  "reviews": {
+    "story": {"status": "approved", "confirmation": "explicit_user_confirmation", "change_summary": []},
+    "acceptance": {"status": "draft", "confirmation": "", "change_summary": []}
+  },
+  "delivery": {"human_file": "./user-story.md", "machine_file": "./story-card.json"},
+  "next_step": {
+    "items": [
+      {
+        "route": "direct_spec",
+        "reason": "错误路由一",
+        "capability": "spec-writing",
+        "story_ids": ["US-001"],
+        "target_id": "SPEC-US-001-A",
+        "suggested_path": "docs/specs/SPEC-US-001-A.md",
+        "required_acceptance_ids": ["AC-US-001-S", "AC-MISSING"]
+      },
+      {
+        "route": "direct_spec",
+        "reason": "错误路由二",
+        "capability": "spec-writing",
+        "story_ids": ["US-001"],
+        "target_id": "SPEC-US-001-B",
+        "suggested_path": "docs/specs/SPEC-US-001-B.md",
+        "required_acceptance_ids": ["AC-US-001-F"]
+      }
+    ]
+  }
+}

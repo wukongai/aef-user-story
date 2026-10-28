@@ -1,0 +1,30 @@
+{
+  "schema_version": "aef-story-library-plan/v1",
+  "base_hashes": {
+    ".story-library.json": "59282c64d4a38f284b8f28ac7007b58093bd3196a797f027da8fb0c6bade688c",
+    "index.md": "57622867abec958b12220a7fabca94d09a1c1ba401d50047473a706acc9665c3",
+    ".story-data/US-001.json": "6a189ce6f8aa406bfd305806dba4161a77811e725ae3bfbb599a39d66c479925",
+    "stories/US-001.md": "9825d0a9654ef3dc30454c58b1c52ae09f04c6df1cbba4e04ebc429c0d2b13e3",
+    ".story-data/US-002.json": "e83e6ef38aac25a850ad7442ec4e5f400a95afee68a3a0d8925697d3f1ab71af",
+    "stories/US-002.md": "6aac5dfe126922717f3bc734cbb9e7c882008f01689bfee5032216b83b66e3c2",
+    ".story-data/US-003.json": "c8e7b64a6724553ffeed6e95813d416e454ee908c53eb44afd19e818d9d95f3d",
+    "stories/US-003.md": "320a2c4ea233d66c47616911c6663633d29078999e67eb893adcb701bf92ddad"
+  },
+  "files": [
+    {
+      "path": ".story-data/US-002.json",
+      "before_sha256": "e83e6ef38aac25a850ad7442ec4e5f400a95afee68a3a0d8925697d3f1ab71af",
+      "content": "{\n  \"schema_version\": \"aef-story-card-file/v1\",\n  \"package_id\": \"REQ-001\",\n  \"story\": {\n    \"id\": \"US-002\",\n    \"kind\": \"story\",\n    \"versions\": [\n      {\n        \"revision\": 1,\n        \"content\": {\n          \"title\": \"查找逐字稿中的关键词\",\n          \"actor\": \"视频学习者\",\n          \"scenario\": \"阅读逐字稿时\",\n          \"goal\": \"找到包含关键词的句子\",\n          \"value\": \"减少逐句浏览时间\",\n          \"statement\": \"作为视频学习者，当我记得一个关键词时，希望找到相关句子，从而减少逐句浏览。\",\n          \"invest_review\": {\n            \"independent\": {\n              \"status\": \"pass\",\n              \"reason\": \"不依赖其他 Story\"\n            },\n            \"negotiable\": {\n              \"status\": \"pass\",\n              \"reason\": \"未锁定技术方案\"\n            },\n            \"valuable\": {\n              \"status\": \"pass\",\n              \"reason\": \"用户能快速回看内容\"\n            },\n            \"estimable\": {\n              \"status\": \"pass\",\n              \"reason\": \"范围和边界清楚\"\n            },\n            \"small\": {\n              \"status\": \"pass\",\n              \"reason\": \"只有一个用户结果\"\n            },\n            \"testable\": {\n              \"status\": \"pass\",\n              \"reason\": \"三类验收条件齐全\"\n            }\n          },\n          \"epic_id\": \"EPIC-001\",\n          \"selection\": \"approved\"\n        },\n        \"reason\": \"合成示例补充独立候选\"\n      },\n      {\n        \"revision\": 2,\n        \"content\": {\n          \"title\": \"查找逐字稿中的关键词\",\n          \"actor\": \"视频学习者\",\n          \"scenario\": \"阅读逐字稿时\",\n          \"goal\": \"找到包含关键词的句子\",\n          \"value\": \"减少逐句浏览时间\",\n          \"statement\": \"作为视频学习者，当我记得一个关键词时，希望找到相关句子，从而减少逐句浏览。\",\n          \"invest_review\": {\n            \"independent\": {\n              \"status\": \"pass\",\n              \"reason\": \"不依赖其他 Story\"\n            },\n            \"negotiable\": {\n              \"status\": \"pass\",\n              \"reason\": \"未锁定技术方案\"\n            },\n            \"valuable\": {\n              \"status\": \"pass\",\n              \"reason\": \"用户能快速回看内容\"\n            },\n            \"estimable\": {\n              \"status\": \"pass\",\n              \"reason\": \"范围和边界清楚\"\n            },\n            \"small\": {\n              \"status\": \"pass\",\n              \"reason\": \"只有一个用户结果\"\n            },\n            \"testable\": {\n              \"status\": \"pass\",\n              \"reason\": \"三类验收条件齐全\"\n            }\n          },\n          \"epic_id\": \"EP-002\",\n          \"selection\": \"approved\"\n        },\n        \"reason\": \"示例调整归类\"\n      },\n      {\n        \"revision\": 3,\n        \"content\": {\n          \"title\": \"查找逐字稿中的关键词\",\n          \"actor\": \"视频学习者\",\n          \"scenario\": \"阅读逐字稿时\",\n          \"goal\": \"找到包含关键词的句子并分享\",\n          \"value\": \"减少逐句浏览时间\",\n          \"statement\": \"作为视频学习者，当我记得一个关键词时，希望找到相关句子，从而减少逐句浏览，并分享结果。\",\n          \"invest_review\": {\n            \"independent\": {\n              \"status\": \"pass\",\n              \"reason\": \"不依赖其他 Story\"\n            },\n            \"negotiable\": {\n              \"status\": \"pass\",\n              \"reason\": \"未锁定技术方案\"\n            },\n            \"valuable\": {\n              \"status\": \"pass\",\n              \"reason\": \"用户能快速回看内容\"\n            },\n            \"estimable\": {\n              \"status\": \"pass\",\n              \"reason\": \"范围和边界清楚\"\n            },\n            \"small\": {\n              \"status\": \"pass\",\n              \"reason\": \"只有一个用户结果\"\n            },\n            \"testable\": {\n              \"status\": \"pass\",\n              \"reason\": \"三类验收条件齐全\"\n            }\n          },\n          \"epic_id\": \"EP-002\",\n          \"selection\": \"approved\"\n        },\n        \"reason\": \"示例完善目标\"\n      }\n    ],\n    \"reviews\": []\n  },\n  \"acceptance\": []\n}\n"
+    },
+    {
+      "path": "index.md",
+      "before_sha256": "57622867abec958b12220a7fabca94d09a1c1ba401d50047473a706acc9665c3",
+      "content": "# 用户故事库 REQ-001\n\n> 按史诗故事查看独立卡片；迭代只引用故事与验收修订，不复制正文。\n\n## EP-002@r1 · 管理学习资料\n\n方便整理\n\n| 故事 | 标题 | 故事确认 | 验收修订 | 结构就绪 | 状态 |\n|---|---|---|---|---|---|\n| [US-002@r3](stories/US-002.md) | 查找逐字稿中的关键词 | 待确认 | 待细化 | 否 | 有效 |\n\n## EPIC-001@r1 · 提升长视频学习效率\n\n提升长视频学习效率\n\n| 故事 | 标题 | 故事确认 | 验收修订 | 结构就绪 | 状态 |\n|---|---|---|---|---|---|\n| [US-001@r1](stories/US-001.md) | 点击逐字稿跳转视频 | 已确认 | AC-US-001-B@r1 已确认、AC-US-001-F@r2 待确认、AC-US-001-S@r1 已确认 | 否 | 有效 |\n\n## 未归类\n\n| 故事 | 标题 | 故事确认 | 验收修订 | 结构就绪 | 状态 |\n|---|---|---|---|---|---|\n| [US-003@r1](stories/US-003.md) | 未归类故事 | 待确认 | 待细化 | 否 | 有效 |\n"
+    },
+    {
+      "path": "stories/US-002.md",
+      "before_sha256": "6aac5dfe126922717f3bc734cbb9e7c882008f01689bfee5032216b83b66e3c2",
+      "content": "# US-002｜查找逐字稿中的关键词\n\n作为视频学习者，当我记得一个关键词时，希望找到相关句子，从而减少逐句浏览，并分享结果。\n\n## 验收条件\n\n暂未补充。\n\n[返回故事索引](../index.md)\n"
+    }
+  ]
+}

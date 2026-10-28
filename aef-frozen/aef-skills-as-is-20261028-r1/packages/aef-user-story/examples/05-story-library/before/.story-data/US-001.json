@@ -1,0 +1,150 @@
+{
+  "schema_version": "aef-story-card-file/v1",
+  "package_id": "REQ-001",
+  "story": {
+    "id": "US-001",
+    "kind": "story",
+    "versions": [
+      {
+        "revision": 1,
+        "content": {
+          "title": "点击逐字稿跳转视频",
+          "actor": "视频学习者",
+          "scenario": "阅读逐字稿时",
+          "goal": "点击文字跳到对应视频位置",
+          "value": "快速回看相关内容",
+          "statement": "作为视频学习者，当我阅读逐字稿时，我希望点击文字跳到对应视频位置，从而快速回看相关内容。",
+          "invest_review": {
+            "independent": {
+              "status": "pass",
+              "reason": "不依赖其他 Story"
+            },
+            "negotiable": {
+              "status": "pass",
+              "reason": "未锁定技术方案"
+            },
+            "valuable": {
+              "status": "pass",
+              "reason": "用户能快速回看内容"
+            },
+            "estimable": {
+              "status": "pass",
+              "reason": "范围和边界清楚"
+            },
+            "small": {
+              "status": "pass",
+              "reason": "只有一个用户结果"
+            },
+            "testable": {
+              "status": "pass",
+              "reason": "三类验收条件齐全"
+            }
+          },
+          "epic_id": "EPIC-001",
+          "selection": "approved"
+        },
+        "reason": "导入已有 Story；新模式待确认"
+      }
+    ],
+    "reviews": [
+      {
+        "revision": 1,
+        "decision": "approved",
+        "actor": "合成示例用户",
+        "ref": "synthetic:story-confirmed"
+      }
+    ]
+  },
+  "acceptance": [
+    {
+      "id": "AC-US-001-S",
+      "kind": "acceptance",
+      "versions": [
+        {
+          "revision": 1,
+          "content": {
+            "story_id": "US-001",
+            "type": "success",
+            "given": "已有带时间戳逐字稿",
+            "when": "点击文字",
+            "then": "跳到对应时间",
+            "story_revision": 1
+          },
+          "reason": "导入已有验收；保留原文"
+        }
+      ],
+      "reviews": [
+        {
+          "revision": 1,
+          "decision": "approved",
+          "actor": "合成示例用户",
+          "ref": "synthetic:acceptance-confirmed"
+        }
+      ]
+    },
+    {
+      "id": "AC-US-001-F",
+      "kind": "acceptance",
+      "versions": [
+        {
+          "revision": 1,
+          "content": {
+            "story_id": "US-001",
+            "type": "failure",
+            "given": "解析失败",
+            "when": "打开逐字稿",
+            "then": "显示失败和重试入口",
+            "story_revision": 1
+          },
+          "reason": "导入已有验收；保留原文"
+        },
+        {
+          "revision": 2,
+          "content": {
+            "story_id": "US-001",
+            "type": "failure",
+            "given": "解析失败",
+            "when": "打开逐字稿",
+            "then": "明确说明失败原因并允许重新上传",
+            "story_revision": 1
+          },
+          "reason": "只完善失败时的恢复路径"
+        }
+      ],
+      "reviews": [
+        {
+          "revision": 1,
+          "decision": "approved",
+          "actor": "合成示例用户",
+          "ref": "synthetic:acceptance-confirmed"
+        }
+      ]
+    },
+    {
+      "id": "AC-US-001-B",
+      "kind": "acceptance",
+      "versions": [
+        {
+          "revision": 1,
+          "content": {
+            "story_id": "US-001",
+            "type": "boundary",
+            "given": "文字无时间戳",
+            "when": "点击文字",
+            "then": "不错误跳转并提示",
+            "story_revision": 1
+          },
+          "reason": "导入已有验收；保留原文"
+        }
+      ],
+      "reviews": [
+        {
+          "revision": 1,
+          "decision": "approved",
+          "actor": "合成示例用户",
+          "ref": "synthetic:acceptance-confirmed"
+        }
+      ]
+    }
+  ]
+}
